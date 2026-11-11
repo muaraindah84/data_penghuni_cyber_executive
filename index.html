@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apartemen Muara Indah Riverside - Database Cyber Executive</title>
+    <title>Database Penghuni & Unit - Apartemen Muara Indah Riverside</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -16,237 +16,202 @@
                             bg: '#070a12',
                             card: '#0f172a',
                             border: '#1e293b',
-                            neonCyan: '#06b6d4',
-                            neonPurple: '#a855f7',
-                            neonPink: '#ec4899',
-                            emerald: '#10b981',
+                            accent: '#06b6d4',
+                            purple: '#a855f7',
+                            pink: '#ec4899',
                             amber: '#f59e0b'
                         }
-                    },
-                    boxShadow: {
-                        'neon-cyan': '0 0 20px rgba(6, 182, 212, 0.25)',
-                        'neon-purple': '0 0 20px rgba(168, 85, 247, 0.25)',
-                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
                     }
                 }
             }
         }
     </script>
-    <!-- FontAwesome Icons -->
+    <!-- FontAwesome 6 Pro/Free & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Font Plus Jakarta Sans & JetBrains Mono -->
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #070a12; color: #f8fafc; }
-        .font-mono { font-family: 'JetBrains Mono', monospace; }
-        
-        /* Glassmorphism Classes */
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #070a12; }
+        .font-mono-code { font-family: 'JetBrains Mono', monospace; }
         .glass-panel {
             background: rgba(15, 23, 42, 0.75);
             backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.08);
         }
-        .glass-modal {
-            background: rgba(10, 15, 29, 0.92);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(6, 182, 212, 0.3);
-        }
+        .glow-accent { box-shadow: 0 0 25px -5px rgba(6, 182, 212, 0.3); }
+        .glow-purple { box-shadow: 0 0 25px -5px rgba(168, 85, 247, 0.3); }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #0b1120; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 9999px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #070a12; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 9999px; }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
-        
-        /* Pulse & Glow Effects */
-        .glow-cyan { filter: drop-shadow(0 0 8px rgba(6, 182, 212, 0.6)); }
-        .glow-purple { filter: drop-shadow(0 0 8px rgba(168, 85, 247, 0.6)); }
-        
-        /* Table Row Glow Hover */
-        tr.cyber-row:hover {
-            background: rgba(30, 41, 59, 0.6);
-            box-shadow: inset 3px 0 0 #06b6d4;
-        }
     </style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-black">
+<body class="text-slate-200 min-h-screen flex flex-col custom-scrollbar selection:bg-cyan-500 selection:text-black">
 
-    <!-- Ambient Grid Background Glow -->
-    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-        <div class="absolute -top-40 -left-40 w-96 h-96 bg-cyan-600/15 rounded-full blur-3xl"></div>
-        <div class="absolute top-1/3 -right-40 w-96 h-96 bg-purple-600/15 rounded-full blur-3xl"></div>
-        <div class="absolute -bottom-40 left-1/3 w-96 h-96 bg-pink-600/10 rounded-full blur-3xl"></div>
-    </div>
+    <!-- KONFIGURASI URL API GOOGLE APPS SCRIPT -->
+    <script>
+        // Tempelkan URL Web App dari Apps Script Anda di sini:
+        const GAS_API_URL = "https://script.google.com/macros/s/AKfycbzkLNZf9GNuxLqRFE668qEIns3DN37f3sOAS-nBe3wNU_y_xfgnTuQ4FVZBwtIg-vLQ/exec";
+    </script>
 
-    <!-- Header / Top Bar -->
-    <header class="sticky top-0 z-40 glass-panel border-b border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between relative z-10">
+    <!-- HEADER / NAVBAR -->
+    <header class="sticky top-0 z-30 glass-panel border-b border-slate-800/80 bg-slate-950/80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-4">
-                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-600 to-purple-600 p-0.5 shadow-neon-cyan">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cyan-500 via-indigo-500 to-purple-600 p-[2px] glow-accent">
                     <div class="w-full h-full bg-slate-950 rounded-[14px] flex items-center justify-center">
-                        <i class="fa-solid fa-building-circle-check text-2xl text-cyan-400 glow-cyan"></i>
+                        <i class="fa-solid fa-building-user text-cyan-400 text-xl"></i>
                     </div>
                 </div>
                 <div>
-                    <div class="flex items-center space-x-2">
-                        <h1 class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">RIVERSIDE</h1>
-                        <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-950 text-cyan-400 border border-cyan-800 tracking-wider uppercase">Executive OS</span>
-                    </div>
-                    <p class="text-xs text-slate-400 font-medium flex items-center">
-                        <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 mr-2 animate-pulse"></span>
-                        Apartemen Muara Indah Riverside • Master Database
-                    </p>
+                    <h1 class="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+                        RIVERSIDE <span class="text-xs px-2.5 py-0.5 rounded-full bg-cyan-500/10 text-cyan-400 border border-cyan-500/30 font-mono-code">DATABASE v2.5 SYSTEM</span>
+                    </h1>
+                    <p class="text-xs text-slate-400">P3SRS Apartemen Muara Indah Riverside</p>
                 </div>
             </div>
 
-            <div class="flex items-center space-x-3">
-                <button onclick="openLogModal()" class="px-4 py-2.5 rounded-xl bg-slate-900/90 hover:bg-slate-800 text-xs font-semibold text-slate-300 border border-slate-700/60 hover:border-cyan-500/50 transition flex items-center space-x-2 shadow-lg">
-                    <i class="fa-solid fa-terminal text-cyan-400"></i>
-                    <span>Audit Trail Log</span>
+            <!-- TAB NAVIGATOR UTAMA -->
+            <div class="flex items-center bg-slate-900/90 p-1.5 rounded-2xl border border-slate-800">
+                <button id="btnTabPenghuni" onclick="switchTab('penghuni')" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 flex items-center gap-2">
+                    <i class="fa-solid fa-users"></i> Master Penghuni
                 </button>
-                <button onclick="openFormModal()" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-xs font-bold text-slate-950 shadow-neon-cyan transition flex items-center space-x-2 transform hover:-translate-y-0.5">
-                    <i class="fa-solid fa-user-plus text-slate-950"></i>
-                    <span>Input Penghuni Baru</span>
+                <button id="btnTabUnit" onclick="switchTab('unit')" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-building"></i> Master Unit
+                </button>
+                <button id="btnTabLog" onclick="switchTab('log')" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white flex items-center gap-2">
+                    <i class="fa-solid fa-clock-rotate-left"></i> Log Aktivitas
                 </button>
             </div>
         </div>
     </header>
 
-    <!-- Main Container -->
-    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8 relative z-10">
+    <!-- MAIN CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
 
-        <!-- 7 Executive Dashboard Stat Cards -->
-        <section class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
-            <!-- Total Unit -->
-            <div class="glass-panel rounded-2xl p-4 border border-slate-800 relative overflow-hidden group hover:border-cyan-500/40 transition">
-                <div class="absolute -right-2 -bottom-2 opacity-10 group-hover:opacity-20 transition text-cyan-400">
-                    <i class="fa-solid fa-city text-5xl"></i>
+        <!-- DASHBOARD STATS CARDS -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            <!-- Card 1 -->
+            <div class="glass-panel p-5 rounded-3xl relative overflow-hidden group hover:border-cyan-500/50 transition-all duration-300">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-cyan-500/10 rounded-full blur-xl group-hover:bg-cyan-500/20 transition-all"></div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Total Master Unit</span>
+                    <div class="w-9 h-9 rounded-xl bg-cyan-500/10 text-cyan-400 flex items-center justify-center border border-cyan-500/20">
+                        <i class="fa-solid fa-door-closed"></i>
+                    </div>
                 </div>
-                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Total Unit</p>
-                <h3 id="stat-total-unit" class="text-2xl font-black text-white mt-1 font-mono">0</h3>
-                <span class="text-[10px] text-slate-500 font-medium">Kapasitas Master</span>
+                <div class="mt-4 flex items-baseline justify-between">
+                    <span id="statTotalUnit" class="text-3xl font-extrabold text-white font-mono-code">--</span>
+                    <span class="text-xs text-cyan-400 font-medium">100% Terdaftar</span>
+                </div>
             </div>
 
-            <!-- Total Pemilik Unik -->
-            <div class="glass-panel rounded-2xl p-4 border border-slate-800 relative overflow-hidden group hover:border-purple-500/40 transition">
-                <div class="absolute -right-2 -bottom-2 opacity-10 group-hover:opacity-20 transition text-purple-400">
-                    <i class="fa-solid fa-user-tie text-5xl"></i>
+            <!-- Card 2 -->
+            <div class="glass-panel p-5 rounded-3xl relative overflow-hidden group hover:border-indigo-500/50 transition-all duration-300">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl group-hover:bg-indigo-500/20 transition-all"></div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Pemilik Unik</span>
+                    <div class="w-9 h-9 rounded-xl bg-indigo-500/10 text-indigo-400 flex items-center justify-center border border-indigo-500/20">
+                        <i class="fa-solid fa-user-shield"></i>
+                    </div>
                 </div>
-                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Total Pemilik</p>
-                <h3 id="stat-total-pemilik" class="text-2xl font-black text-purple-400 mt-1 font-mono glow-purple">0</h3>
-                <span class="text-[10px] text-slate-500 font-medium">Subjek Hukum</span>
+                <div class="mt-4 flex items-baseline justify-between">
+                    <span id="statTotalPemilik" class="text-3xl font-extrabold text-white font-mono-code">--</span>
+                    <span class="text-xs text-indigo-400 font-medium">Entitas Pemilik</span>
+                </div>
             </div>
 
-            <!-- Unit Terisi -->
-            <div class="glass-panel rounded-2xl p-4 border border-slate-800 relative overflow-hidden group hover:border-emerald-500/40 transition">
-                <div class="absolute -right-2 -bottom-2 opacity-10 group-hover:opacity-20 transition text-emerald-400">
-                    <i class="fa-solid fa-house-lock text-5xl"></i>
+            <!-- Card 3 -->
+            <div class="glass-panel p-5 rounded-3xl relative overflow-hidden group hover:border-emerald-500/50 transition-all duration-300">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-emerald-500/10 rounded-full blur-xl group-hover:bg-emerald-500/20 transition-all"></div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Status Hunian</span>
+                    <div class="w-9 h-9 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center border border-emerald-500/20">
+                        <i class="fa-solid fa-house-user"></i>
+                    </div>
                 </div>
-                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Unit Terisi</p>
-                <h3 id="stat-unit-terisi" class="text-2xl font-black text-emerald-400 mt-1 font-mono">0</h3>
-                <span class="text-[10px] text-emerald-500/80 font-medium flex items-center">
-                    <i class="fa-solid fa-arrow-up-right text-[8px] mr-1"></i> Occupied
-                </span>
+                <div class="mt-4 flex items-baseline justify-between">
+                    <div>
+                        <span id="statUnitTerisi" class="text-3xl font-extrabold text-emerald-400 font-mono-code">--</span>
+                        <span class="text-xs text-slate-400"> Terisi</span>
+                    </div>
+                    <div class="text-right">
+                        <span id="statUnitKosong" class="text-xl font-bold text-rose-400 font-mono-code">--</span>
+                        <span class="text-xs text-slate-500 block">Kosong</span>
+                    </div>
+                </div>
             </div>
 
-            <!-- Unit Kosong -->
-            <div class="glass-panel rounded-2xl p-4 border border-slate-800 relative overflow-hidden group hover:border-amber-500/40 transition">
-                <div class="absolute -right-2 -bottom-2 opacity-10 group-hover:opacity-20 transition text-amber-400">
-                    <i class="fa-solid fa-door-open text-5xl"></i>
+            <!-- Card 4 -->
+            <div class="glass-panel p-5 rounded-3xl relative overflow-hidden group hover:border-purple-500/50 transition-all duration-300">
+                <div class="absolute -right-4 -bottom-4 w-24 h-24 bg-purple-500/10 rounded-full blur-xl group-hover:bg-purple-500/20 transition-all"></div>
+                <div class="flex items-center justify-between">
+                    <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider">Jiwa & Kendaraan</span>
+                    <div class="w-9 h-9 rounded-xl bg-purple-500/10 text-purple-400 flex items-center justify-center border border-purple-500/20">
+                        <i class="fa-solid fa-users-gear"></i>
+                    </div>
                 </div>
-                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Unit Kosong</p>
-                <h3 id="stat-unit-kosong" class="text-2xl font-black text-amber-400 mt-1 font-mono">0</h3>
-                <span class="text-[10px] text-amber-500/80 font-medium">Ready to Lease</span>
-            </div>
-
-            <!-- Total Jiwa Penghuni -->
-            <div class="glass-panel rounded-2xl p-4 border border-slate-800 relative overflow-hidden group hover:border-cyan-500/40 transition">
-                <div class="absolute -right-2 -bottom-2 opacity-10 group-hover:opacity-20 transition text-cyan-400">
-                    <i class="fa-solid fa-users text-5xl"></i>
+                <div class="mt-4 flex items-baseline justify-between">
+                    <div>
+                        <span id="statTotalJiwa" class="text-3xl font-extrabold text-purple-400 font-mono-code">--</span>
+                        <span class="text-xs text-slate-400"> Jiwa</span>
+                    </div>
+                    <div class="text-right">
+                        <span id="statTotalKendaraan" class="text-xl font-bold text-amber-400 font-mono-code">--</span>
+                        <span class="text-xs text-slate-500 block">Unit Kendaraan</span>
+                    </div>
                 </div>
-                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Penghuni</p>
-                <h3 id="stat-total-penghuni" class="text-2xl font-black text-cyan-400 mt-1 font-mono glow-cyan">0</h3>
-                <span class="text-[10px] text-slate-500 font-medium">Jiwa Terdaftar</span>
             </div>
-
-            <!-- Staff / ART -->
-            <div class="glass-panel rounded-2xl p-4 border border-slate-800 relative overflow-hidden group hover:border-pink-500/40 transition">
-                <div class="absolute -right-2 -bottom-2 opacity-10 group-hover:opacity-20 transition text-pink-400">
-                    <i class="fa-solid fa-id-badge text-5xl"></i>
-                </div>
-                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Staff / ART</p>
-                <h3 id="stat-total-staff" class="text-2xl font-black text-pink-400 mt-1 font-mono">0</h3>
-                <span class="text-[10px] text-slate-500 font-medium">Akses Penunjang</span>
-            </div>
-
-            <!-- Kendaraan -->
-            <div class="glass-panel rounded-2xl p-4 border border-slate-800 relative overflow-hidden group hover:border-indigo-500/40 transition">
-                <div class="absolute -right-2 -bottom-2 opacity-10 group-hover:opacity-20 transition text-indigo-400">
-                    <i class="fa-solid fa-car text-5xl"></i>
-                </div>
-                <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Kendaraan</p>
-                <h3 id="stat-total-kendaraan" class="text-2xl font-black text-indigo-400 mt-1 font-mono">0</h3>
-                <span class="text-[10px] text-slate-500 font-medium">Stiker Parkir</span>
-            </div>
-        </section>
-
-        <!-- Navigation Tab Toggle Bar -->
-        <div class="glass-panel p-1.5 rounded-2xl flex space-x-2 max-w-md border border-slate-800 shadow-glass">
-            <button id="tab-btn-penghuni" onclick="switchTab('penghuni')" class="flex-1 py-3 px-4 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-neon-cyan">
-                <i class="fa-solid fa-users text-slate-950"></i>
-                <span>Master Penghuni & Mutasi</span>
-            </button>
-            <button id="tab-btn-master" onclick="switchTab('master')" class="flex-1 py-3 px-4 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800/60">
-                <i class="fa-solid fa-building text-slate-400"></i>
-                <span>Master Unit (Properti)</span>
-            </button>
         </div>
 
-        <!-- TAB 1: MASTER PENGHUNI & MUTASI -->
-        <div id="tab-content-penghuni" class="space-y-4">
-            <!-- Filter & Search Toolbar -->
-            <div class="glass-panel p-4 rounded-2xl border border-slate-800 flex flex-col md:flex-row items-center justify-between gap-4">
-                <div class="flex-1 relative w-full">
-                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-3.5 text-cyan-500/70 text-xs"></i>
-                    <input type="text" id="search-input" oninput="renderData()" placeholder="Cari No Unit, Access Card, Nama Penghuni, HP..." class="w-full pl-10 pr-4 py-2.5 bg-slate-950/80 border border-slate-800 rounded-xl text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 font-medium">
-                </div>
-                <div class="flex items-center space-x-3 w-full md:w-auto justify-end">
-                    <select id="filter-tower" onchange="renderData()" class="bg-slate-950/80 border border-slate-800 text-slate-300 text-xs rounded-xl px-3 py-2.5 focus:outline-none focus:border-cyan-500">
-                        <option value="">Semua Tower</option>
-                        <option value="Tower A">Tower A</option>
-                        <option value="Tower B">Tower B</option>
-                        <option value="Tower C">Tower C</option>
-                    </select>
-                    <select id="filter-status" onchange="renderData()" class="bg-slate-950/80 border border-slate-800 text-slate-300 text-xs rounded-xl px-3 py-2.5 focus:outline-none focus:border-cyan-500">
-                        <option value="">Semua Status Huni</option>
-                        <option value="Pemilik">Dihuni Pemilik</option>
-                        <option value="Penyewa">Penyewa</option>
-                        <option value="Fasilitas">Fasilitas</option>
-                        <option value="Kosong">Kosong</option>
-                    </select>
-                    <button onclick="exportCSV()" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-slate-200 text-xs font-semibold rounded-xl flex items-center space-x-2 border border-slate-700/80 transition">
-                        <i class="fa-solid fa-file-csv text-emerald-400"></i>
-                        <span>Export CSV</span>
-                    </button>
-                </div>
+        <!-- SEARCH & FILTER TOOLBAR -->
+        <div class="glass-panel p-4 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="relative w-full md:w-96">
+                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
+                <input type="text" id="searchInput" oninput="renderApp()" placeholder="Cari unit, nama, HP, atau access card..." class="w-full bg-slate-950/80 border border-slate-800 rounded-2xl pl-11 pr-4 py-3 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all">
             </div>
 
-            <!-- Table Master Penghuni -->
-            <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden shadow-glass">
-                <div class="overflow-x-auto custom-scrollbar">
-                    <table class="w-full text-xs text-left text-slate-300">
-                        <thead class="bg-slate-950/90 text-slate-400 font-bold border-b border-slate-800 uppercase tracking-wider text-[10px]">
+            <div class="flex items-center gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                <!-- TOWER FILTER OPTION: 1A, 1B, 2A, 2B -->
+                <select id="filterTower" onchange="renderApp()" class="bg-slate-950/80 border border-slate-800 rounded-2xl px-4 py-3 text-xs text-slate-300 focus:outline-none focus:border-cyan-500">
+                    <option value="ALL">Semua Tower</option>
+                    <option value="Tower 1A">Tower 1A</option>
+                    <option value="Tower 1B">Tower 1B</option>
+                    <option value="Tower 2A">Tower 2A</option>
+                    <option value="Tower 2B">Tower 2B</option>
+                </select>
+
+                <select id="filterStatus" onchange="renderApp()" class="bg-slate-950/80 border border-slate-800 rounded-2xl px-4 py-3 text-xs text-slate-300 focus:outline-none focus:border-cyan-500">
+                    <option value="ALL">Semua Status</option>
+                    <option value="Terisi">Terisi</option>
+                    <option value="Kosong">Kosong</option>
+                </select>
+
+                <button onclick="exportDataCSV()" class="whitespace-nowrap px-4 py-3 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-semibold text-xs transition-all border border-slate-700 flex items-center gap-2">
+                    <i class="fa-solid fa-file-csv"></i> Export CSV
+                </button>
+
+                <button onclick="openFormPenghuni()" class="whitespace-nowrap px-5 py-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-xs transition-all shadow-lg shadow-cyan-500/20 flex items-center gap-2">
+                    <i class="fa-solid fa-user-plus"></i> Tambah / Update Penghuni
+                </button>
+            </div>
+        </div>
+
+        <!-- VIEW TAB 1: MASTER PENGHUNI -->
+        <div id="viewPenghuni" class="space-y-6">
+            <div class="glass-panel rounded-3xl overflow-hidden border border-slate-800">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-950/90 text-xs uppercase tracking-wider text-slate-400 font-mono-code border-b border-slate-800">
                             <tr>
-                                <th class="py-4 px-4">Unit / Tower</th>
-                                <th class="py-4 px-4">Status Huni</th>
-                                <th class="py-4 px-4">Penghuni Utama</th>
-                                <th class="py-4 px-4">Keluarga Inti</th>
-                                <th class="py-4 px-4">Staff / ART</th>
-                                <th class="py-4 px-4">Access Card</th>
-                                <th class="py-4 px-4 text-center">Kendaraan</th>
-                                <th class="py-4 px-4 text-right">Aksi Data</th>
+                                <th class="py-4 px-6">Unit & Tower</th>
+                                <th class="py-4 px-6">Penghuni Utama</th>
+                                <th class="py-4 px-6">Keluarga Inti</th>
+                                <th class="py-4 px-6">Staff / ART / Driver</th>
+                                <th class="py-4 px-6">Akses Kendaraan</th>
+                                <th class="py-4 px-6 text-center">Aksi & Mutasi</th>
                             </tr>
                         </thead>
-                        <tbody id="penghuni-table-body" class="divide-y divide-slate-800/60 font-medium">
+                        <tbody id="tablePenghuniBody" class="divide-y divide-slate-800/60 font-mono-code">
                             <!-- Dynamic Content -->
                         </tbody>
                     </table>
@@ -254,39 +219,56 @@
             </div>
         </div>
 
-        <!-- TAB 2: MASTER UNIT PROPERTI MURNI -->
-        <div id="tab-content-master" class="space-y-4 hidden">
-            <div class="glass-panel p-5 rounded-2xl border border-slate-800 flex justify-between items-center">
-                <div>
-                    <h3 class="font-extrabold text-slate-100 text-sm flex items-center">
-                        <i class="fa-solid fa-building-circle-gear mr-2 text-purple-400"></i> Spesifikasi Fisik Master Unit
-                    </h3>
-                    <p class="text-xs text-slate-400 mt-0.5">Kelola tipe unit, spesifikasi m², nilai NPP maintenance, daya listrik, dan pemilik legal.</p>
-                </div>
-                <button onclick="openFormModal(true)" class="px-4 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-xs font-bold text-white shadow-neon-purple flex items-center space-x-2 transition">
-                    <i class="fa-solid fa-plus"></i>
-                    <span>Tambah Master Unit</span>
+        <!-- VIEW TAB 2: MASTER UNIT (SPESIFIKASI TEKNIS PROPERTI) -->
+        <div id="viewMasterUnit" class="space-y-6 hidden">
+            <div class="flex items-center justify-between">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-building text-cyan-400"></i> Master Data Fisik Unit & Spesifikasi
+                </h3>
+                <button onclick="openMasterUnitModal()" class="px-4 py-2.5 rounded-2xl bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 font-semibold text-xs transition-all flex items-center gap-2">
+                    <i class="fa-solid fa-plus"></i> Tambah Master Unit Baru
                 </button>
             </div>
-
-            <div class="glass-panel rounded-2xl border border-slate-800 overflow-hidden shadow-glass">
-                <div class="overflow-x-auto custom-scrollbar">
-                    <table class="w-full text-xs text-left text-slate-300">
-                        <thead class="bg-slate-950/90 text-slate-400 font-bold border-b border-slate-800 uppercase tracking-wider text-[10px]">
+            <div class="glass-panel rounded-3xl overflow-hidden border border-slate-800">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm">
+                        <thead class="bg-slate-950/90 text-xs uppercase tracking-wider text-slate-400 font-mono-code border-b border-slate-800">
                             <tr>
-                                <th class="py-4 px-4">Tower & Unit</th>
-                                <th class="py-4 px-4">Tipe Unit</th>
-                                <th class="py-4 px-4">Luas (m²)</th>
-                                <th class="py-4 px-4">Nilai NPP (%)</th>
-                                <th class="py-4 px-4">Daya Listrik</th>
-                                <th class="py-4 px-4">Pemilik Legal</th>
-                                <th class="py-4 px-4">Status Huni</th>
-                                <th class="py-4 px-4 text-center">Jml Kendaraan</th>
-                                <th class="py-4 px-4 text-right">Aksi Master Unit</th>
+                                <th class="py-4 px-6">Nomor Unit</th>
+                                <th class="py-4 px-6">Tower</th>
+                                <th class="py-4 px-6">Tipe & Luas</th>
+                                <th class="py-4 px-6">Nilai NPP</th>
+                                <th class="py-4 px-6">Daya Listrik</th>
+                                <th class="py-4 px-6">Pemilik Legal</th>
+                                <th class="py-4 px-6">Status Huni</th>
+                                <th class="py-4 px-6 text-center">Edit Spesifikasi</th>
                             </tr>
                         </thead>
-                        <tbody id="master-table-body" class="divide-y divide-slate-800/60 font-medium">
+                        <tbody id="tableMasterUnitBody" class="divide-y divide-slate-800/60 font-mono-code">
                             <!-- Dynamic Content -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- VIEW TAB 3: LOG AKTIVITAS (AUDIT TRAIL) -->
+        <div id="viewLog" class="space-y-6 hidden">
+            <div class="glass-panel p-6 rounded-3xl border border-slate-800 space-y-4">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-clock-rotate-left text-purple-400"></i> Audit Trail & Activity Logs
+                </h3>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm font-mono-code">
+                        <thead class="bg-slate-950/90 text-xs uppercase tracking-wider text-slate-400 border-b border-slate-800">
+                            <tr>
+                                <th class="py-3 px-4">Waktu</th>
+                                <th class="py-3 px-4">User Operator</th>
+                                <th class="py-3 px-4">Aktivitas & Rincian Transaksi</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableLogBody" class="divide-y divide-slate-800/60 text-xs">
+                            <!-- Dynamic Logs -->
                         </tbody>
                     </table>
                 </div>
@@ -295,1005 +277,658 @@
 
     </main>
 
-    <!-- Modal 1: Form Input / Edit Data Penghuni -->
-    <div id="form-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden p-4 overflow-y-auto">
-        <div class="glass-modal rounded-3xl w-full max-w-3xl my-auto overflow-hidden shadow-2xl border border-cyan-500/30">
-            <div class="px-6 py-4 bg-slate-950/90 border-b border-slate-800 flex justify-between items-center">
-                <h3 id="form-title" class="font-extrabold text-sm text-white flex items-center">
-                    <i class="fa-solid fa-user-pen text-cyan-400 mr-2"></i> Form Kelola Penghuni Unit
+    <!-- MODAL 1: FORM KELOLA PENGHUNI (MOBILE-FIRST LAPANG & RESPONSIVE CARD) -->
+    <div id="modalPenghuni" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="glass-panel w-full max-w-3xl max-h-[90vh] rounded-3xl border border-slate-800 flex flex-col overflow-hidden shadow-2xl">
+            <!-- Modal Header -->
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-user-pen text-cyan-400"></i> Form Kelola Data Penghuni Unit
                 </h3>
-                <button onclick="closeFormModal()" class="text-slate-400 hover:text-white transition"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <button onclick="closeModal('modalPenghuni')" class="text-slate-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
 
-            <form id="resident-form" onsubmit="handleFormSubmit(event)" class="p-6 space-y-5 max-h-[80vh] overflow-y-auto custom-scrollbar text-xs">
-                <input type="hidden" id="form-unit-id">
-
-                <!-- Section 1: Physical Unit & Owner -->
-                <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 space-y-3">
-                    <h4 class="font-bold text-cyan-400 uppercase tracking-wider text-[10px]">1. Identitas Unit & Pemilik Legal</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Tower</label>
-                            <select id="form-tower" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:border-cyan-500">
-                                <option value="Tower A">Tower A</option>
-                                <option value="Tower B">Tower B</option>
-                                <option value="Tower C">Tower C</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Nomor Unit</label>
-                            <input type="text" id="form-unit-number" placeholder="misal: 08-12" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:border-cyan-500">
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Status Hunian</label>
-                            <select id="form-occupancy-status" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:border-cyan-500">
-                                <option value="Pemilik">Dihuni Pemilik</option>
-                                <option value="Penyewa">Penyewa / Kontrak</option>
-                                <option value="Fasilitas">Fasilitas Management</option>
-                                <option value="Kosong">Kosong (Unoccupied)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-slate-800/80">
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Nama Pemilik Legal</label>
-                            <input type="text" id="form-owner-name" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:border-cyan-500">
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">No. HP Pemilik</label>
-                            <input type="text" id="form-owner-phone" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:border-cyan-500">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 2: Primary Resident -->
-                <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 space-y-3">
-                    <h4 class="font-bold text-cyan-400 uppercase tracking-wider text-[10px]">2. Penghuni Utama (Penanggung Jawab Huni)</h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Nama Penghuni Utama</label>
-                            <input type="text" id="form-resident-name" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:border-cyan-500">
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">No. HP / WhatsApp</label>
-                            <input type="text" id="form-resident-phone" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:border-cyan-500">
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Access Card ID Utama</label>
-                            <input type="text" id="form-resident-card" placeholder="AC-XXXX" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 font-mono focus:border-cyan-500">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Section 3: Family Dynamic Rows -->
-                <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 space-y-3">
-                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-                        <h4 class="font-bold text-cyan-400 uppercase tracking-wider text-[10px]">3. Anggota Keluarga Inti</h4>
-                        <button type="button" onclick="addFamilyRow()" class="text-cyan-400 hover:text-cyan-300 font-bold text-xs flex items-center space-x-1">
-                            <i class="fa-solid fa-circle-plus"></i><span>Tambah Keluarga</span>
-                        </button>
-                    </div>
-                    <div id="family-rows-container" class="space-y-3"></div>
-                </div>
-
-                <!-- Section 4: Staff Dynamic Rows -->
-                <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 space-y-3">
-                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-                        <h4 class="font-bold text-purple-400 uppercase tracking-wider text-[10px]">4. Staff / ART / Driver / Babysitter</h4>
-                        <button type="button" onclick="addStaffRow()" class="text-purple-400 hover:text-purple-300 font-bold text-xs flex items-center space-x-1">
-                            <i class="fa-solid fa-circle-plus"></i><span>Tambah Staff</span>
-                        </button>
-                    </div>
-                    <div id="staff-rows-container" class="space-y-3"></div>
-                </div>
-
-                <!-- Section 5: Vehicles Dynamic Rows -->
-                <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 space-y-3">
-                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-                        <h4 class="font-bold text-pink-400 uppercase tracking-wider text-[10px]">5. Data Akses Kendaraan Terdaftar</h4>
-                        <button type="button" onclick="addVehicleRow()" class="text-pink-400 hover:text-pink-300 font-bold text-xs flex items-center space-x-1">
-                            <i class="fa-solid fa-circle-plus"></i><span>Tambah Kendaraan</span>
-                        </button>
-                    </div>
-                    <div id="vehicle-rows-container" class="space-y-3"></div>
-                </div>
-
-                <div class="pt-3 flex justify-end space-x-3 border-t border-slate-800">
-                    <button type="button" onclick="closeFormModal()" class="px-5 py-2.5 rounded-xl bg-slate-800 text-slate-300 font-semibold hover:bg-slate-700">Batal</button>
-                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold shadow-neon-cyan">Simpan Data Penghuni</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal 2: Edit Master Unit (Dedicated Properti Physical Modal) -->
-    <div id="master-unit-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden p-4 overflow-y-auto">
-        <div class="glass-modal rounded-3xl w-full max-w-2xl my-auto overflow-hidden shadow-2xl border border-purple-500/30">
-            <div class="px-6 py-4 bg-slate-950/90 border-b border-slate-800 flex justify-between items-center">
-                <h3 class="font-extrabold text-sm text-white flex items-center">
-                    <i class="fa-solid fa-sliders text-purple-400 mr-2"></i> Edit Spesifikasi Master Unit
-                </h3>
-                <button onclick="closeMasterUnitEditModal()" class="text-slate-400 hover:text-white transition"><i class="fa-solid fa-xmark text-lg"></i></button>
-            </div>
-            <form id="master-unit-form" onsubmit="handleMasterUnitSubmit(event)" class="p-6 space-y-4 text-xs">
-                <input type="hidden" id="mu-unit-id">
-                
-                <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 space-y-3">
-                    <h4 class="font-bold text-purple-400 uppercase tracking-wider text-[10px]">1. Spesifikasi Fisik & Daya</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Tower</label>
-                            <select id="mu-tower" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
-                                <option value="Tower A">Tower A</option>
-                                <option value="Tower B">Tower B</option>
-                                <option value="Tower C">Tower C</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Nomor Unit</label>
-                            <input type="text" id="mu-unit-number" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 font-bold">
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Tipe Unit</label>
-                            <select id="mu-unit-type" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
-                                <option value="1BR Studio">1BR Studio</option>
-                                <option value="2BR Standard">2BR Standard</option>
-                                <option value="3BR Executive">3BR Executive</option>
-                                <option value="Penthouse">Penthouse Sky</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2">
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Luas Gross (m²)</label>
-                            <input type="number" step="0.1" id="mu-unit-size" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 font-mono">
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Nilai NPP (%)</label>
-                            <input type="number" step="0.001" id="mu-npp" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 font-mono">
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Daya Listrik (VA)</label>
-                            <select id="mu-power" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
-                                <option value="1300 VA">1300 VA</option>
-                                <option value="2200 VA">2200 VA</option>
-                                <option value="3500 VA">3500 VA</option>
-                                <option value="5500 VA">5500 VA</option>
-                                <option value="11000 VA">11000 VA</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900/60 p-4 rounded-2xl border border-slate-800 space-y-3">
-                    <h4 class="font-bold text-purple-400 uppercase tracking-wider text-[10px]">2. Subjek Legal Pemilik & Status Huni</h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Nama Pemilik Legal</label>
-                            <input type="text" id="mu-owner-name" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">NIK Pemilik</label>
-                            <input type="text" id="mu-owner-nik" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200 font-mono">
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">No. HP Pemilik</label>
-                            <input type="text" id="mu-owner-phone" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
-                        </div>
-                        <div>
-                            <label class="block font-semibold text-slate-400 mb-1">Email Pemilik</label>
-                            <input type="email" id="mu-owner-email" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
-                        </div>
-                    </div>
-                    <div class="pt-2">
-                        <label class="block font-semibold text-slate-400 mb-1">Status Hunian Master</label>
-                        <select id="mu-occupancy-status" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
-                            <option value="Pemilik">Dihuni Pemilik</option>
-                            <option value="Penyewa">Penyewa / Kontrak</option>
-                            <option value="Fasilitas">Fasilitas Management</option>
-                            <option value="Kosong">Kosong (Unoccupied)</option>
+            <!-- Modal Content (Scrollable) -->
+            <div class="p-6 overflow-y-auto custom-scrollbar space-y-6">
+                <!-- Select Unit & Tower -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Pilih Tower</label>
+                        <select id="formTower" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500">
+                            <option value="Tower 1A">Tower 1A</option>
+                            <option value="Tower 1B">Tower 1B</option>
+                            <option value="Tower 2A">Tower 2A</option>
+                            <option value="Tower 2B">Tower 2B</option>
                         </select>
                     </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Nomor Unit</label>
+                        <input type="text" id="formUnitNo" placeholder="Contoh: 1001A" class="w-full bg-slate-950 border border-slate-800 rounded-2xl px-4 py-3 text-sm text-white focus:outline-none focus:border-cyan-500">
+                    </div>
                 </div>
 
-                <div class="pt-2 flex justify-end space-x-3">
-                    <button type="button" onclick="closeMasterUnitEditModal()" class="px-5 py-2.5 rounded-xl bg-slate-800 text-slate-300 font-semibold">Batal</button>
-                    <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold shadow-neon-purple">Simpan Master Unit</button>
+                <!-- Penghuni Utama -->
+                <div class="p-5 bg-slate-950/60 rounded-2xl border border-slate-800/80 space-y-4">
+                    <h4 class="text-xs font-bold text-cyan-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-user"></i> Data Penghuni Utama
+                    </h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div>
+                            <label class="text-[10px] text-slate-400 uppercase">Nama Lengkap</label>
+                            <input type="text" id="formNamaPenghuni" placeholder="Nama Lengkap" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-slate-400 uppercase">No. WA / HP</label>
+                            <input type="text" id="formHpPenghuni" placeholder="0812xxx" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                        <div>
+                            <label class="text-[10px] text-slate-400 uppercase">ID Access Card</label>
+                            <input type="text" id="formCardPenghuni" placeholder="AC-XXXX" class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-cyan-500">
+                        </div>
+                    </div>
                 </div>
-            </form>
+
+                <!-- Anggota Keluarga (Mobile Card Layout Lapang) -->
+                <div class="p-5 bg-slate-950/60 rounded-2xl border border-slate-800/80 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-xs font-bold text-indigo-400 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-users"></i> Anggota Keluarga Inti
+                        </h4>
+                        <button onclick="addFamilyRow()" class="text-xs px-3 py-1.5 rounded-xl bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 hover:bg-indigo-500/30 font-semibold flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Tambah Keluarga
+                        </button>
+                    </div>
+                    <div id="familyContainer" class="space-y-3">
+                        <!-- Dynamic Card Items Injected Here -->
+                    </div>
+                </div>
+
+                <!-- Staff / ART / Driver -->
+                <div class="p-5 bg-slate-950/60 rounded-2xl border border-slate-800/80 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-xs font-bold text-purple-400 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-user-gear"></i> Staff / ART / Driver / Babysitter
+                        </h4>
+                        <button onclick="addStaffRow()" class="text-xs px-3 py-1.5 rounded-xl bg-purple-500/20 text-purple-400 border border-purple-500/30 hover:bg-purple-500/30 font-semibold flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Tambah Staff
+                        </button>
+                    </div>
+                    <div id="staffContainer" class="space-y-3">
+                        <!-- Dynamic Card Items Injected Here -->
+                    </div>
+                </div>
+
+                <!-- Akses Kendaraan -->
+                <div class="p-5 bg-slate-950/60 rounded-2xl border border-slate-800/80 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                            <i class="fa-solid fa-car"></i> Data Akses Parkir Kendaraan
+                        </h4>
+                        <button onclick="addVehicleRow()" class="text-xs px-3 py-1.5 rounded-xl bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:bg-amber-500/30 font-semibold flex items-center gap-1">
+                            <i class="fa-solid fa-plus"></i> Tambah Kendaraan
+                        </button>
+                    </div>
+                    <div id="vehicleContainer" class="space-y-3">
+                        <!-- Dynamic Card Items Injected Here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="p-4 border-t border-slate-800 bg-slate-950/80 flex items-center justify-end gap-3">
+                <button onclick="closeModal('modalPenghuni')" class="px-5 py-2.5 rounded-xl text-xs font-semibold text-slate-400 hover:text-white border border-slate-800">
+                    Batal
+                </button>
+                <button onclick="savePenghuniForm()" class="px-6 py-2.5 rounded-xl text-xs font-semibold bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/20">
+                    Simpan Data Penghuni
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- Modal 3: Mutasi Pindah Unit -->
-    <div id="mutation-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
-        <div class="glass-modal rounded-3xl w-full max-w-md overflow-hidden shadow-2xl border border-amber-500/30 text-xs">
-            <div class="px-6 py-4 bg-slate-950/90 border-b border-slate-800 flex justify-between items-center">
-                <h3 class="font-extrabold text-sm text-white flex items-center">
-                    <i class="fa-solid fa-arrows-rotate text-amber-400 mr-2"></i> Mutasi Pindah Unit
+    <!-- MODAL 2: EDIT SPESIFIKASI MASTER UNIT -->
+    <div id="modalMasterUnit" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="glass-panel w-full max-w-lg rounded-3xl border border-slate-800 flex flex-col overflow-hidden shadow-2xl">
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-sliders text-cyan-400"></i> Spesifikasi Master Unit
                 </h3>
-                <button onclick="closeMutationModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <button onclick="closeModal('modalMasterUnit')" class="text-slate-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <form onsubmit="handleMutationSubmit(event)" class="p-6 space-y-4">
-                <input type="hidden" id="mutation-from-id">
-                <div>
-                    <label class="block font-semibold text-slate-400 mb-1">Unit Asal saat ini</label>
-                    <input type="text" id="mutation-from-display" disabled class="w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 font-bold text-amber-400">
+            <div class="p-6 space-y-4">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="text-xs font-semibold text-slate-400 uppercase">Tower</label>
+                        <select id="muTower" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+                            <option value="Tower 1A">Tower 1A</option>
+                            <option value="Tower 1B">Tower 1B</option>
+                            <option value="Tower 2A">Tower 2A</option>
+                            <option value="Tower 2B">Tower 2B</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-slate-400 uppercase">Nomor Unit</label>
+                        <input type="text" id="muUnitNo" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="text-xs font-semibold text-slate-400 uppercase">Tipe Unit</label>
+                        <input type="text" id="muType" placeholder="2BR-Corner" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-slate-400 uppercase">Luas (m²)</label>
+                        <input type="number" id="muLuas" placeholder="48" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="text-xs font-semibold text-slate-400 uppercase">Nilai NPP</label>
+                        <input type="text" id="muNpp" placeholder="0.0021" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+                    </div>
+                    <div>
+                        <label class="text-xs font-semibold text-slate-400 uppercase">Daya Listrik</label>
+                        <input type="text" id="muListrik" placeholder="3500 VA" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+                    </div>
                 </div>
                 <div>
-                    <label class="block font-semibold text-slate-400 mb-1">Pilih Unit Tujuan (Status Kosong)</label>
-                    <select id="mutation-target-id" required class="w-full bg-slate-950 border border-slate-800 rounded-xl p-2.5 text-slate-200">
-                        <!-- Dynamic Options -->
+                    <label class="text-xs font-semibold text-slate-400 uppercase">Pemilik Legal Properti</label>
+                    <input type="text" id="muPemilik" placeholder="Nama Pemilik Legal" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+                </div>
+                <div>
+                    <label class="text-xs font-semibold text-slate-400 uppercase">Status Hunian</label>
+                    <select id="muStatus" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+                        <option value="Kosong">Kosong</option>
+                        <option value="Terisi">Terisi</option>
                     </select>
                 </div>
-                <div class="p-3 bg-amber-950/40 border border-amber-800/60 rounded-xl text-amber-300 text-[11px] leading-relaxed">
-                    <i class="fa-solid fa-triangle-exclamation text-amber-400 mr-1"></i> Seluruh data penghuni utama, keluarga inti, staff/ART, dan akses kendaraan parkir akan dialihkan penuh ke unit baru. Unit asal otomatis diset menjadi <strong>Kosong</strong>.
-                </div>
-                <div class="flex justify-end space-x-3 pt-2">
-                    <button type="button" onclick="closeMutationModal()" class="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 font-semibold">Batal</button>
-                    <button type="submit" class="px-5 py-2 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold">Proses Mutasi</button>
-                </div>
-            </form>
+            </div>
+            <div class="p-4 border-t border-slate-800 bg-slate-950/80 flex items-center justify-end gap-3">
+                <button onclick="closeModal('modalMasterUnit')" class="px-4 py-2 rounded-xl text-xs text-slate-400 border border-slate-800">Batal</button>
+                <button onclick="saveMasterUnitSpec()" class="px-5 py-2 rounded-xl text-xs font-semibold bg-cyan-500 text-slate-950">Simpan Spesifikasi Unit</button>
+            </div>
         </div>
     </div>
 
-    <!-- Modal 4: Detail View -->
-    <div id="detail-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden p-4 overflow-y-auto">
-        <div class="glass-modal rounded-3xl w-full max-w-2xl my-auto overflow-hidden shadow-2xl border border-cyan-500/30 text-xs">
-            <div class="px-6 py-4 bg-slate-950/90 border-b border-slate-800 flex justify-between items-center">
-                <h3 class="font-extrabold text-sm text-white flex items-center">
-                    <i class="fa-solid fa-id-card text-cyan-400 mr-2"></i> Profile Lengkap Unit & Penghuni
+    <!-- MODAL 3: MUTASI PINDAH UNIT -->
+    <div id="modalMutasi" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 hidden">
+        <div class="glass-panel w-full max-w-md rounded-3xl border border-slate-800 flex flex-col overflow-hidden shadow-2xl">
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between bg-slate-950/60">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-arrows-turn-to-dots text-purple-400"></i> Mutasi Pindah Unit
                 </h3>
-                <button onclick="closeDetailModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+                <button onclick="closeModal('modalMutasi')" class="text-slate-400 hover:text-white text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
             </div>
-            <div id="detail-modal-body" class="p-6 space-y-4 max-h-[75vh] overflow-y-auto custom-scrollbar">
-                <!-- Dynamic Content -->
+            <div class="p-6 space-y-4">
+                <div>
+                    <label class="text-xs text-slate-400 uppercase block mb-1">Unit Asal</label>
+                    <input type="text" id="mutasiOldUnit" readonly class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-sm text-cyan-400 font-bold">
+                </div>
+                <div>
+                    <label class="text-xs text-slate-400 uppercase block mb-1">Pilih Unit Tujuan (Berstatus Kosong)</label>
+                    <select id="mutasiNewUnit" class="w-full bg-slate-950 border border-slate-800 rounded-xl px-3 py-2 text-sm text-white">
+                        <!-- Options injected by JS -->
+                    </select>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- Modal 5: Audit Trail Log -->
-    <div id="log-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 flex items-center justify-center hidden p-4">
-        <div class="glass-modal rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl border border-slate-700 text-xs">
-            <div class="px-6 py-4 bg-slate-950/90 border-b border-slate-800 flex justify-between items-center">
-                <h3 class="font-extrabold text-sm text-white flex items-center">
-                    <i class="fa-solid fa-clock-rotate-left text-cyan-400 mr-2"></i> Audit Trail & Log Transaksi Realtime
-                </h3>
-                <button onclick="closeLogModal()" class="text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
-            </div>
-            <div class="p-3 bg-slate-900/60 border-b border-slate-800/80 flex justify-between items-center px-6">
-                <span class="text-slate-400">Merekam jejak perubahan master unit, mutasi, & status huni.</span>
-                <button onclick="clearLogs()" class="text-rose-400 hover:text-rose-300 font-bold text-[11px]">Clear All Logs</button>
-            </div>
-            <div class="p-6 max-h-[60vh] overflow-y-auto custom-scrollbar">
-                <ul id="log-list" class="space-y-3 font-mono">
-                    <!-- Dynamic Logs -->
-                </ul>
+            <div class="p-4 border-t border-slate-800 bg-slate-950/80 flex justify-end gap-3">
+                <button onclick="closeModal('modalMutasi')" class="px-4 py-2 text-xs text-slate-400">Batal</button>
+                <button onclick="processMutasi()" class="px-5 py-2 text-xs font-semibold bg-purple-600 text-white rounded-xl">Proses Mutasi</button>
             </div>
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 bg-slate-900 border border-cyan-500/50 text-white px-5 py-3.5 rounded-2xl shadow-neon-cyan z-50 flex items-center space-x-3 hidden transition-all duration-300">
-        <i id="toast-icon" class="fa-solid fa-circle-check text-cyan-400 text-xl"></i>
-        <span id="toast-message" class="text-xs font-semibold">Notifikasi berhasil!</span>
-    </div>
-
-    <!-- Application Script Utuh 100% -->
+    <!-- JAVASCRIPT LOGIC ENGINE COMPUTE (FULL FUNCTION) -->
     <script>
-        // Initial Dataset
-        let apartmentData = [
-            {
-                id: "U-101",
-                tower: "Tower A",
-                unitNumber: "01-05",
-                unitType: "2BR Standard",
-                size: 45.5,
-                npp: 0.012,
-                power: "2200 VA",
-                occupancyStatus: "Pemilik",
-                owner: { name: "Budi Santoso", nik: "3171012345670001", phone: "081234567890", email: "budi.santoso@gmail.com" },
-                primaryResident: { name: "Budi Santoso", phone: "081234567890", cardId: "AC-1001" },
-                familyMembers: [
-                    { relation: "Istri", name: "Siti Rahma", phone: "081234567891", cardId: "AC-1002" },
-                    { relation: "Anak", name: "Kevin Santoso", phone: "081234567892", cardId: "AC-1003" }
-                ],
-                staffMembers: [
-                    { role: "ART", name: "Mbok Nah", phone: "089988776655", cardId: "AC-S-01" }
-                ],
-                vehicles: [
-                    { type: "Mobil", plate: "B 1234 RVS", model: "Honda HR-V", stickerId: "PK-012" }
-                ],
-                lastUpdated: "2026-11-10 14:30"
-            },
-            {
-                id: "U-102",
-                tower: "Tower B",
-                unitNumber: "12-08",
-                unitType: "3BR Executive",
-                size: 78.0,
-                npp: 0.025,
-                power: "3500 VA",
-                occupancyStatus: "Penyewa",
-                owner: { name: "Hendra Wijaya", nik: "3172098765430002", phone: "081122334455", email: "hendra@corp.com" },
-                primaryResident: { name: "Michael Tan", phone: "081899001122", cardId: "AC-2044" },
-                familyMembers: [],
-                staffMembers: [
-                    { role: "Driver", name: "Pak Jaka", phone: "087711223344", cardId: "AC-S-09" }
-                ],
-                vehicles: [
-                    { type: "Mobil", plate: "B 8888 MCH", model: "Toyota Alphard", stickerId: "PK-099" },
-                    { type: "Motor", plate: "B 3321 ABC", model: "Vespa Primavera", stickerId: "PK-M01" }
-                ],
-                lastUpdated: "2026-11-08 09:15"
-            },
-            {
-                id: "U-103",
-                tower: "Tower A",
-                unitNumber: "05-12",
-                unitType: "1BR Studio",
-                size: 32.0,
-                npp: 0.008,
-                power: "1300 VA",
-                occupancyStatus: "Kosong",
-                owner: { name: "Budi Santoso", nik: "3171012345670001", phone: "081234567890", email: "budi.santoso@gmail.com" },
-                primaryResident: { name: "", phone: "", cardId: "" },
-                familyMembers: [],
-                staffMembers: [],
-                vehicles: [],
-                lastUpdated: "2026-11-01 10:00"
-            },
-            {
-                id: "U-104",
-                tower: "Tower C",
-                unitNumber: "21-01",
-                unitType: "Penthouse Sky",
-                size: 135.0,
-                npp: 0.048,
-                power: "11000 VA",
-                occupancyStatus: "Pemilik",
-                owner: { name: "Dr. Aris Pratama", nik: "3175029384750009", phone: "081399887766", email: "draris@riverside.id" },
-                primaryResident: { name: "Dr. Aris Pratama", phone: "081399887766", cardId: "AC-VIP-01" },
-                familyMembers: [
-                    { relation: "Istri", name: "Clara Pratama", phone: "081399887767", cardId: "AC-VIP-02" }
-                ],
-                staffMembers: [
-                    { role: "Babysitter", name: "Siti", phone: "085544332211", cardId: "AC-S-10" }
-                ],
-                vehicles: [
-                    { type: "Mobil", plate: "B 1 ARS", model: "Porsche Cayenne", stickerId: "PK-VIP-01" }
-                ],
-                lastUpdated: "2026-11-11 08:00"
-            }
-        ];
-
-        let activityLogs = [
-            { id: 1, timestamp: "2026-11-11 08:00", type: "CREATE", desc: "Data Penthouse C-21-01 berhasil didaftarkan" },
-            { id: 2, timestamp: "2026-11-10 14:30", type: "UPDATE", desc: "Pembaruan profil hunian Tower A - 01-05" }
-        ];
-
-        window.onload = function() {
-            renderData();
+        let appData = {
+            masterUnits: [
+                { id: '1001A', tower: 'Tower 1A', type: '2BR-Corner', luas: 48, npp: 0.0021, listrik: '3500 VA', pemilik: 'Irpan Septian', status: 'Terisi', totalKendaraan: 2 },
+                { id: '1002B', tower: 'Tower 1B', type: '1BR-Exec', luas: 36, npp: 0.0015, listrik: '2200 VA', pemilik: 'Budi Santoso', status: 'Terisi', totalKendaraan: 1 },
+                { id: '2001A', tower: 'Tower 2A', type: '3BR-Suite', luas: 72, npp: 0.0035, listrik: '5500 VA', pemilik: 'Hendra Wijaya', status: 'Kosong', totalKendaraan: 0 }
+            ],
+            penghuni: [
+                {
+                    unitId: '1001A',
+                    penghuniUtama: 'Irpan Septian',
+                    noHpPenghuni: '081299998888',
+                    accessCardPenghuni: 'AC-1001-A',
+                    keluarga: [{ hubungan: 'Istri', nama: 'Siti Rahmawati', hp: '081288887777', card: 'AC-1001-B' }],
+                    staff: [{ peran: 'ART', nama: 'Mbok Sumi', hp: '085711112222', card: 'AC-1001-C' }],
+                    kendaraan: [{ jenis: 'Mobil', plat: 'B 1979 RVS', merk: 'Honda HR-V', stiker: 'PK-001' }]
+                }
+            ],
+            logs: [
+                { timestamp: new Date().toLocaleString(), user: 'System Admin', activity: 'Aplikasi Database Riverside dimuat' }
+            ]
         };
 
+        let currentTab = 'penghuni';
+
+        function addLog(user, activity) {
+            const timeStr = new Date().toLocaleString();
+            appData.logs.unshift({ timestamp: timeStr, user: user, activity: activity });
+        }
+
         function switchTab(tab) {
-            const btnPenghuni = document.getElementById('tab-btn-penghuni');
-            const btnMaster = document.getElementById('tab-btn-master');
-            const secPenghuni = document.getElementById('tab-content-penghuni');
-            const secMaster = document.getElementById('tab-content-master');
+            currentTab = tab;
+            const btnP = document.getElementById('btnTabPenghuni');
+            const btnU = document.getElementById('btnTabUnit');
+            const btnL = document.getElementById('btnTabLog');
+            const viewP = document.getElementById('viewPenghuni');
+            const viewU = document.getElementById('viewMasterUnit');
+            const viewL = document.getElementById('viewLog');
+
+            btnP.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white flex items-center gap-2";
+            btnU.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white flex items-center gap-2";
+            btnL.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 text-slate-400 hover:text-white flex items-center gap-2";
+
+            viewP.classList.add('hidden');
+            viewU.classList.add('hidden');
+            viewL.classList.add('hidden');
 
             if (tab === 'penghuni') {
-                btnPenghuni.className = "flex-1 py-3 px-4 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-neon-cyan";
-                btnMaster.className = "flex-1 py-3 px-4 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800/60";
-                secPenghuni.classList.remove('hidden');
-                secMaster.classList.add('hidden');
+                btnP.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 flex items-center gap-2";
+                viewP.classList.remove('hidden');
+            } else if (tab === 'unit') {
+                btnU.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 flex items-center gap-2";
+                viewU.classList.remove('hidden');
             } else {
-                btnMaster.className = "flex-1 py-3 px-4 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-neon-purple";
-                btnPenghuni.className = "flex-1 py-3 px-4 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800/60";
-                secMaster.classList.remove('hidden');
-                secPenghuni.classList.add('hidden');
+                btnL.className = "px-5 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all duration-300 bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg shadow-cyan-500/25 flex items-center gap-2";
+                viewL.classList.remove('hidden');
             }
+            renderApp();
         }
 
-        function renderData() {
-            updateStatistics();
-            renderPenghuniTable();
-            renderMasterUnitTable();
-        }
+        function renderApp() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const towerFilter = document.getElementById('filterTower').value;
+            const statusFilter = document.getElementById('filterStatus').value;
 
-        function updateStatistics() {
-            document.getElementById('stat-total-unit').innerText = apartmentData.length;
-            
-            // Unique Owners count
-            const uniqueOwners = new Set(apartmentData.map(i => i.owner && i.owner.name ? i.owner.name.trim().toLowerCase() : null).filter(Boolean));
-            document.getElementById('stat-total-pemilik').innerText = uniqueOwners.size;
+            // Update Dashboard Counters
+            document.getElementById('statTotalUnit').innerText = appData.masterUnits.length;
+            const pemilikSet = new Set(appData.masterUnits.map(u => u.pemilik.trim()));
+            document.getElementById('statTotalPemilik').innerText = pemilikSet.size;
 
-            document.getElementById('stat-unit-terisi').innerText = apartmentData.filter(i => i.occupancyStatus !== 'Kosong').length;
-            document.getElementById('stat-unit-kosong').innerText = apartmentData.filter(i => i.occupancyStatus === 'Kosong').length;
+            const terisiCount = appData.masterUnits.filter(u => u.status === 'Terisi').length;
+            document.getElementById('statUnitTerisi').innerText = terisiCount;
+            document.getElementById('statUnitKosong').innerText = appData.masterUnits.length - terisiCount;
 
-            let totalPenghuni = 0, totalStaff = 0, totalVehicles = 0;
-            apartmentData.forEach(item => {
-                if (item.occupancyStatus !== 'Kosong') {
-                    totalPenghuni += (item.primaryResident?.name ? 1 : 0) + (item.familyMembers ? item.familyMembers.length : 0);
-                    totalStaff += item.staffMembers ? item.staffMembers.length : 0;
-                }
-                totalVehicles += item.vehicles ? item.vehicles.length : 0;
+            let totalJiwa = 0;
+            let totalVeh = 0;
+            appData.penghuni.forEach(p => {
+                if (p.penghuniUtama) totalJiwa += 1;
+                totalJiwa += (p.keluarga ? p.keluarga.length : 0);
+                totalJiwa += (p.staff ? p.staff.length : 0);
+                totalVeh += (p.kendaraan ? p.kendaraan.length : 0);
+            });
+            document.getElementById('statTotalJiwa').innerText = totalJiwa;
+            document.getElementById('statTotalKendaraan').innerText = totalVeh;
+
+            // Filter Units
+            const filteredUnits = appData.masterUnits.filter(u => {
+                const matchQuery = u.id.toLowerCase().includes(query) || u.pemilik.toLowerCase().includes(query);
+                const matchTower = towerFilter === 'ALL' || u.tower === towerFilter;
+                const matchStatus = statusFilter === 'ALL' || u.status === statusFilter;
+                return matchQuery && matchTower && matchStatus;
             });
 
-            document.getElementById('stat-total-penghuni').innerText = totalPenghuni;
-            document.getElementById('stat-total-staff').innerText = totalStaff;
-            document.getElementById('stat-total-kendaraan').innerText = totalVehicles;
+            // Render Table Master Unit
+            const tuBody = document.getElementById('tableMasterUnitBody');
+            tuBody.innerHTML = filteredUnits.map(u => `
+                <tr class="hover:bg-slate-900/50 transition-all">
+                    <td class="py-4 px-6 font-bold text-cyan-400">${u.id}</td>
+                    <td class="py-4 px-6 text-slate-300">${u.tower}</td>
+                    <td class="py-4 px-6 text-slate-300">${u.type} (${u.luas} m²)</td>
+                    <td class="py-4 px-6 text-slate-400">${u.npp}</td>
+                    <td class="py-4 px-6 text-slate-400">${u.listrik}</td>
+                    <td class="py-4 px-6 font-semibold text-white">${u.pemilik}</td>
+                    <td class="py-4 px-6">
+                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold ${u.status === 'Terisi' ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-rose-500/10 text-rose-400 border border-rose-500/20'}">
+                            ${u.status}
+                        </span>
+                    </td>
+                    <td class="py-4 px-6 text-center">
+                        <button onclick="editUnitSpec('${u.id}')" class="text-xs px-3 py-1.5 rounded-xl bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20 border border-cyan-500/30">
+                            <i class="fa-solid fa-pen-to-square"></i> Edit Spesifikasi
+                        </button>
+                    </td>
+                </tr>
+            `).join('');
+
+            // Render Table Master Penghuni
+            const tpBody = document.getElementById('tablePenghuniBody');
+            tpBody.innerHTML = filteredUnits.map(u => {
+                const p = appData.penghuni.find(x => x.unitId === u.id) || {};
+                const hasPenghuni = p.penghuniUtama && u.status === 'Terisi';
+
+                return `
+                    <tr class="hover:bg-slate-900/50 transition-all">
+                        <td class="py-4 px-6">
+                            <span class="font-bold text-cyan-400 block">${u.id}</span>
+                            <span class="text-xs text-slate-500 block">${u.tower}</span>
+                        </td>
+                        <td class="py-4 px-6">
+                            ${hasPenghuni ? `
+                                <div class="font-semibold text-white">${p.penghuniUtama}</div>
+                                <div class="text-xs text-slate-400">${p.noHpPenghuni} | <span class="text-cyan-400">${p.accessCardPenghuni}</span></div>
+                            ` : `<span class="text-xs text-slate-600 italic">Kosong / Unoccupied</span>`}
+                        </td>
+                        <td class="py-4 px-6 text-xs text-slate-300">
+                            ${hasPenghuni && p.keluarga && p.keluarga.length > 0 ? p.keluarga.map(k => `<div>• ${k.nama} (${k.hubungan})</div>`).join('') : '-'}
+                        </td>
+                        <td class="py-4 px-6 text-xs text-slate-300">
+                            ${hasPenghuni && p.staff && p.staff.length > 0 ? p.staff.map(s => `<div>• ${s.nama} (${s.peran})</div>`).join('') : '-'}
+                        </td>
+                        <td class="py-4 px-6 text-xs text-slate-300">
+                            ${hasPenghuni && p.kendaraan && p.kendaraan.length > 0 ? p.kendaraan.map(v => `<div class="text-amber-400">• ${v.plat} (${v.jenis})</div>`).join('') : '-'}
+                        </td>
+                        <td class="py-4 px-6 text-center space-x-2">
+                            <button onclick="openFormPenghuni('${u.id}')" class="text-xs px-3 py-1.5 rounded-xl bg-indigo-500/10 text-indigo-400 hover:bg-indigo-500/20 border border-indigo-500/30">
+                                <i class="fa-solid fa-user-pen"></i> Update
+                            </button>
+                            ${hasPenghuni ? `
+                                <button onclick="openMutasiModal('${u.id}')" class="text-xs px-3 py-1.5 rounded-xl bg-purple-500/10 text-purple-400 hover:bg-purple-500/20 border border-purple-500/30">
+                                    <i class="fa-solid fa-arrows-turn-to-dots"></i> Mutasi
+                                </button>
+                                <button onclick="checkoutPenghuni('${u.id}')" class="text-xs px-3 py-1.5 rounded-xl bg-rose-500/10 text-rose-400 hover:bg-rose-500/20 border border-rose-500/30">
+                                    <i class="fa-solid fa-user-xmark"></i> Hapus
+                                </button>
+                            ` : ''}
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Render Table Logs
+            const tlBody = document.getElementById('tableLogBody');
+            tlBody.innerHTML = appData.logs.map(l => `
+                <tr class="hover:bg-slate-900/40">
+                    <td class="py-3 px-4 text-slate-500">${l.timestamp}</td>
+                    <td class="py-3 px-4 text-cyan-400 font-semibold">${l.user}</td>
+                    <td class="py-3 px-4 text-slate-300">${l.activity}</td>
+                </tr>
+            `).join('');
         }
 
-        function filterDataList() {
-            const search = document.getElementById('search-input').value.toLowerCase();
-            const towerFilter = document.getElementById('filter-tower').value;
-            const statusFilter = document.getElementById('filter-status').value;
-
-            return apartmentData.filter(item => {
-                const matchTower = !towerFilter || item.tower === towerFilter;
-                const matchStatus = !statusFilter || item.occupancyStatus === statusFilter;
-                
-                const searchStr = `${item.tower} ${item.unitNumber} ${item.primaryResident?.name || ''} ${item.primaryResident?.cardId || ''} ${item.owner?.name || ''}`.toLowerCase();
-                const matchSearch = !search || searchStr.includes(search);
-
-                return matchTower && matchStatus && matchSearch;
-            });
+        // MOBILE CARD GENERATORS FOR FORM PENGHUNI
+        function addFamilyRow(data = {}) {
+            const container = document.getElementById('familyContainer');
+            const div = document.createElement('div');
+            div.className = "p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-2 font-mono-code";
+            div.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <input type="text" placeholder="Peran (Istri/Anak)" value="${data.hubungan || ''}" class="fam-hub w-1/2 bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white">
+                    <button onclick="this.parentElement.parentElement.remove()" class="text-rose-400 hover:text-rose-300 text-xs px-2 py-1"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <input type="text" placeholder="Nama Lengkap Anggota Keluarga" value="${data.nama || ''}" class="fam-nama w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white">
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="text" placeholder="No HP/WA" value="${data.hp || ''}" class="fam-hp bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white">
+                    <input type="text" placeholder="Access Card ID" value="${data.card || ''}" class="fam-card bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white">
+                </div>
+            `;
+            container.appendChild(div);
         }
 
-        function renderPenghuniTable() {
-            const tbody = document.getElementById('penghuni-table-body');
-            tbody.innerHTML = '';
+        function addStaffRow(data = {}) {
+            const container = document.getElementById('staffContainer');
+            const div = document.createElement('div');
+            div.className = "p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-2 font-mono-code";
+            div.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <input type="text" placeholder="Peran (ART/Driver)" value="${data.peran || ''}" class="stf-peran w-1/2 bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white">
+                    <button onclick="this.parentElement.parentElement.remove()" class="text-rose-400 hover:text-rose-300 text-xs px-2 py-1"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <input type="text" placeholder="Nama Lengkap Staff/ART" value="${data.nama || ''}" class="stf-nama w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white">
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="text" placeholder="No HP/WA" value="${data.hp || ''}" class="stf-hp bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white">
+                    <input type="text" placeholder="Access Card ID" value="${data.card || ''}" class="stf-card bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white">
+                </div>
+            `;
+            container.appendChild(div);
+        }
 
-            const filtered = filterDataList();
-            if (filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="8" class="text-center py-8 text-slate-500 font-medium">Tidak ada data hunian yang cocok dengan filter.</td></tr>`;
+        function addVehicleRow(data = {}) {
+            const container = document.getElementById('vehicleContainer');
+            const div = document.createElement('div');
+            div.className = "p-3 bg-slate-950 rounded-xl border border-slate-800 space-y-2 font-mono-code";
+            div.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <select class="veh-jenis w-1/2 bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white">
+                        <option value="Mobil" ${data.jenis === 'Mobil' ? 'selected' : ''}>Mobil</option>
+                        <option value="Motor" ${data.jenis === 'Motor' ? 'selected' : ''}>Motor</option>
+                        <option value="Sepeda Listrik" ${data.jenis === 'Sepeda Listrik' ? 'selected' : ''}>Sepeda Listrik</option>
+                    </select>
+                    <button onclick="this.parentElement.parentElement.remove()" class="text-rose-400 hover:text-rose-300 text-xs px-2 py-1"><i class="fa-solid fa-trash"></i></button>
+                </div>
+                <input type="text" placeholder="Nomor Plat (Contoh: B 1234 RVS)" value="${data.plat || ''}" class="veh-plat w-full bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1.5 text-xs text-white font-bold">
+                <div class="grid grid-cols-2 gap-2">
+                    <input type="text" placeholder="Merk & Model" value="${data.merk || ''}" class="veh-merk bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white">
+                    <input type="text" placeholder="No Stiker / Card Parkir" value="${data.stiker || ''}" class="veh-stiker bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1 text-xs text-white">
+                </div>
+            `;
+            container.appendChild(div);
+        }
+
+        function openFormPenghuni(unitId = null) {
+            document.getElementById('familyContainer').innerHTML = '';
+            document.getElementById('staffContainer').innerHTML = '';
+            document.getElementById('vehicleContainer').innerHTML = '';
+
+            if (unitId) {
+                const u = appData.masterUnits.find(x => x.id === unitId);
+                const p = appData.penghuni.find(x => x.unitId === unitId) || {};
+
+                if (u) document.getElementById('formTower').value = u.tower;
+                document.getElementById('formUnitNo').value = unitId;
+                document.getElementById('formNamaPenghuni').value = p.penghuniUtama || '';
+                document.getElementById('formHpPenghuni').value = p.noHpPenghuni || '';
+                document.getElementById('formCardPenghuni').value = p.accessCardPenghuni || '';
+
+                if (p.keluarga) p.keluarga.forEach(k => addFamilyRow(k));
+                if (p.staff) p.staff.forEach(s => addStaffRow(s));
+                if (p.kendaraan) p.kendaraan.forEach(v => addVehicleRow(v));
+            } else {
+                document.getElementById('formUnitNo').value = '';
+                document.getElementById('formNamaPenghuni').value = '';
+                document.getElementById('formHpPenghuni').value = '';
+                document.getElementById('formCardPenghuni').value = '';
+            }
+
+            document.getElementById('modalPenghuni').classList.remove('hidden');
+        }
+
+        function savePenghuniForm() {
+            const unitId = document.getElementById('formUnitNo').value.trim();
+            const tower = document.getElementById('formTower').value;
+            const namaUtama = document.getElementById('formNamaPenghuni').value.trim();
+
+            if (!unitId || !namaUtama) {
+                alert("Mohon isi Nomor Unit dan Nama Penghuni Utama!");
                 return;
             }
 
-            filtered.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.className = "cyber-row transition border-b border-slate-800/40";
-                
-                let statusBadge = `<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-amber-950/80 text-amber-400 border border-amber-800/60">Kosong</span>`;
-                if (item.occupancyStatus === 'Pemilik') statusBadge = `<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-emerald-950/80 text-emerald-400 border border-emerald-800/60">Pemilik</span>`;
-                else if (item.occupancyStatus === 'Penyewa') statusBadge = `<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-blue-950/80 text-cyan-400 border border-cyan-800/60">Penyewa</span>`;
-                else if (item.occupancyStatus === 'Fasilitas') statusBadge = `<span class="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-purple-950/80 text-purple-400 border border-purple-800/60">Fasilitas</span>`;
-
-                tr.innerHTML = `
-                    <td class="py-3.5 px-4 font-bold text-white">${item.tower} <br><span class="text-cyan-400 font-mono text-xs">Unit ${item.unitNumber}</span></td>
-                    <td class="py-3.5 px-4">${statusBadge}</td>
-                    <td class="py-3.5 px-4">
-                        <span class="font-bold text-slate-100">${item.primaryResident?.name || '-'}</span>
-                        <div class="text-[10px] text-slate-400 font-mono">${item.primaryResident?.phone || ''}</div>
-                    </td>
-                    <td class="py-3.5 px-4 font-semibold text-slate-300"><i class="fa-solid fa-users text-cyan-400 mr-1.5"></i>${item.familyMembers ? item.familyMembers.length : 0} Jiwa</td>
-                    <td class="py-3.5 px-4 font-semibold text-slate-300"><i class="fa-solid fa-user-shield text-purple-400 mr-1.5"></i>${item.staffMembers ? item.staffMembers.length : 0} Staff</td>
-                    <td class="py-3.5 px-4"><span class="bg-slate-900 border border-slate-700 px-2 py-1 rounded-lg text-[10px] font-mono text-cyan-400">${item.primaryResident?.cardId || '-'}</span></td>
-                    <td class="py-3.5 px-4 text-center font-bold text-pink-400 font-mono">${item.vehicles ? item.vehicles.length : 0}</td>
-                    <td class="py-3.5 px-4 text-right space-x-1">
-                        <button onclick="openDetailModal('${item.id}')" class="text-slate-400 hover:text-white p-1.5" title="Detail Profile"><i class="fa-solid fa-eye"></i></button>
-                        <button onclick="openFormModal(false, '${item.id}')" class="text-cyan-400 hover:text-cyan-300 p-1.5" title="Edit Data Penghuni"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button onclick="openMutationModal('${item.id}')" class="text-amber-400 hover:text-amber-300 p-1.5" title="Mutasi Unit"><i class="fa-solid fa-arrows-rotate"></i></button>
-                        <button onclick="clearResidentData('${item.id}')" class="text-rose-400 hover:text-rose-300 p-1.5" title="Check-out Penghuni"><i class="fa-solid fa-user-xmark"></i></button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
+            const keluarga = [];
+            document.querySelectorAll('#familyContainer > div').forEach(div => {
+                keluarga.push({
+                    hubungan: div.querySelector('.fam-hub').value,
+                    nama: div.querySelector('.fam-nama').value,
+                    hp: div.querySelector('.fam-hp').value,
+                    card: div.querySelector('.fam-card').value
+                });
             });
-        }
 
-        function renderMasterUnitTable() {
-            const tbody = document.getElementById('master-table-body');
-            tbody.innerHTML = '';
-
-            apartmentData.forEach(item => {
-                const tr = document.createElement('tr');
-                tr.className = "cyber-row transition border-b border-slate-800/40";
-                
-                tr.innerHTML = `
-                    <td class="py-3.5 px-4 font-bold text-white">${item.tower} - ${item.unitNumber}</td>
-                    <td class="py-3.5 px-4 font-semibold text-purple-300">${item.unitType || '2BR Standard'}</td>
-                    <td class="py-3.5 px-4 font-mono">${item.size || 0} m²</td>
-                    <td class="py-3.5 px-4 font-mono text-cyan-400">${item.npp || 0}%</td>
-                    <td class="py-3.5 px-4 text-slate-300 font-mono">${item.power || '2200 VA'}</td>
-                    <td class="py-3.5 px-4 font-bold text-slate-200">${item.owner?.name || '-'}</td>
-                    <td class="py-3.5 px-4"><span class="px-2 py-0.5 rounded text-[10px] font-bold ${item.occupancyStatus === 'Kosong' ? 'bg-amber-950 text-amber-400 border border-amber-800' : 'bg-emerald-950 text-emerald-400 border border-emerald-800'}">${item.occupancyStatus}</span></td>
-                    <td class="py-3.5 px-4 text-center font-bold text-pink-400 font-mono">${item.vehicles ? item.vehicles.length : 0}</td>
-                    <td class="py-3.5 px-4 text-right space-x-1">
-                        <button onclick="openDetailModal('${item.id}')" class="text-slate-400 hover:text-white p-1.5" title="Detail"><i class="fa-solid fa-eye"></i></button>
-                        <button onclick="openMasterUnitEditModal('${item.id}')" class="text-purple-400 hover:text-purple-300 p-1.5" title="Edit Master Unit Physical"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button onclick="deleteMasterUnit('${item.id}')" class="text-rose-400 hover:text-rose-300 p-1.5" title="Hapus Master Unit"><i class="fa-solid fa-trash-can"></i></button>
-                    </td>
-                `;
-                tbody.appendChild(tr);
+            const staff = [];
+            document.querySelectorAll('#staffContainer > div').forEach(div => {
+                staff.push({
+                    peran: div.querySelector('.stf-peran').value,
+                    nama: div.querySelector('.stf-nama').value,
+                    hp: div.querySelector('.stf-hp').value,
+                    card: div.querySelector('.stf-card').value
+                });
             });
-        }
 
-        // Form Dynamic Rows & Handlers
-        function openFormModal(isMaster = false, unitId = null) {
-            document.getElementById('resident-form').reset();
-            document.getElementById('family-rows-container').innerHTML = '';
-            document.getElementById('staff-rows-container').innerHTML = '';
-            document.getElementById('vehicle-rows-container').innerHTML = '';
+            const kendaraan = [];
+            document.querySelectorAll('#vehicleContainer > div').forEach(div => {
+                kendaraan.push({
+                    jenis: div.querySelector('.veh-jenis').value,
+                    plat: div.querySelector('.veh-plat').value,
+                    merk: div.querySelector('.veh-merk').value,
+                    stiker: div.querySelector('.veh-stiker').value
+                });
+            });
 
-            if (unitId) {
-                const item = apartmentData.find(u => u.id === unitId);
-                if (item) {
-                    document.getElementById('form-unit-id').value = item.id;
-                    document.getElementById('form-tower').value = item.tower;
-                    document.getElementById('form-unit-number').value = item.unitNumber;
-                    document.getElementById('form-occupancy-status').value = item.occupancyStatus;
-                    document.getElementById('form-owner-name').value = item.owner?.name || '';
-                    document.getElementById('form-owner-phone').value = item.owner?.phone || '';
-
-                    document.getElementById('form-resident-name').value = item.primaryResident?.name || '';
-                    document.getElementById('form-resident-phone').value = item.primaryResident?.phone || '';
-                    document.getElementById('form-resident-card').value = item.primaryResident?.cardId || '';
-
-                    if (item.familyMembers) item.familyMembers.forEach(f => addFamilyRow(f.relation, f.name, f.phone, f.cardId));
-                    if (item.staffMembers) item.staffMembers.forEach(s => addStaffRow(s.role, s.name, s.phone, s.cardId));
-                    if (item.vehicles) item.vehicles.forEach(v => addVehicleRow(v.type, v.plate, v.model, v.stickerId));
-                }
+            let unit = appData.masterUnits.find(u => u.id === unitId);
+            if (!unit) {
+                unit = { id: unitId, tower: tower, type: 'Standard', luas: 36, npp: 0.0015, listrik: '2200 VA', pemilik: namaUtama, status: 'Terisi', totalKendaraan: kendaraan.length };
+                appData.masterUnits.push(unit);
             } else {
-                document.getElementById('form-unit-id').value = '';
-                addFamilyRow();
+                unit.status = 'Terisi';
+                unit.totalKendaraan = kendaraan.length;
             }
 
-            document.getElementById('form-modal').classList.remove('hidden');
-        }
-
-        function closeFormModal() { document.getElementById('form-modal').classList.add('hidden'); }
-
-        function addFamilyRow(rel="", name="", phone="", card="") {
-            const container = document.getElementById('family-rows-container');
-            const div = document.createElement('div');
-            div.className = "bg-slate-950/90 p-3.5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-0 sm:grid sm:grid-cols-12 sm:gap-2 sm:items-center relative shadow-sm";
-            div.innerHTML = `
-                <div class="sm:col-span-3">
-                    <label class="block text-[10px] text-slate-400 font-bold mb-1">Hubungan</label>
-                    <input type="text" placeholder="Istri / Anak / Orangtua" value="${rel}" class="fam-rel w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:border-cyan-500">
-                </div>
-                <div class="sm:col-span-4">
-                    <label class="block text-[10px] text-cyan-400 font-bold mb-1">Nama Lengkap (Sesuai KTP)</label>
-                    <input type="text" placeholder="Nama Lengkap Anggota Keluarga" value="${name}" class="fam-name w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-200 font-bold focus:border-cyan-500">
-                </div>
-                <div class="grid grid-cols-2 gap-2 sm:contents">
-                    <div class="sm:col-span-2">
-                        <label class="block text-[10px] text-slate-400 font-bold mb-1">No. HP / WA</label>
-                        <input type="text" placeholder="08xxxxxxxxxx" value="${phone}" class="fam-phone w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-200 font-mono focus:border-cyan-500">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-[10px] text-slate-400 font-bold mb-1">Kartu Akses ID</label>
-                        <input type="text" placeholder="AC-XXXX" value="${card}" class="fam-card w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-cyan-400 font-mono focus:border-cyan-500">
-                    </div>
-                </div>
-                <div class="sm:col-span-1 flex justify-end pt-1 sm:pt-0">
-                    <button type="button" onclick="this.closest('div.bg-slate-950\\/90').remove()" class="w-full sm:w-auto px-3 py-2 rounded-xl bg-rose-950/40 hover:bg-rose-900/60 border border-rose-800/60 text-rose-400 font-bold text-xs flex items-center justify-center space-x-1">
-                        <i class="fa-solid fa-trash-can"></i>
-                        <span class="sm:hidden text-[10px]">Hapus Anggota</span>
-                    </button>
-                </div>
-            `;
-            container.appendChild(div);
-        }
-
-        function addStaffRow(role="", name="", phone="", card="") {
-            const container = document.getElementById('staff-rows-container');
-            const div = document.createElement('div');
-            div.className = "bg-slate-950/90 p-3.5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-0 sm:grid sm:grid-cols-12 sm:gap-2 sm:items-center relative shadow-sm";
-            div.innerHTML = `
-                <div class="sm:col-span-3">
-                    <label class="block text-[10px] text-slate-400 font-bold mb-1">Peran Staff</label>
-                    <input type="text" placeholder="ART / Driver / Babysitter" value="${role}" class="staff-role w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:border-purple-500">
-                </div>
-                <div class="sm:col-span-4">
-                    <label class="block text-[10px] text-purple-400 font-bold mb-1">Nama Lengkap Staff</label>
-                    <input type="text" placeholder="Nama Lengkap Staff" value="${name}" class="staff-name w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-200 font-bold focus:border-purple-500">
-                </div>
-                <div class="grid grid-cols-2 gap-2 sm:contents">
-                    <div class="sm:col-span-2">
-                        <label class="block text-[10px] text-slate-400 font-bold mb-1">No. HP Staff</label>
-                        <input type="text" placeholder="08xxxxxxxxxx" value="${phone}" class="staff-phone w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-200 font-mono focus:border-purple-500">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-[10px] text-slate-400 font-bold mb-1">Kartu Akses ID</label>
-                        <input type="text" placeholder="AC-S-XX" value="${card}" class="staff-card w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-purple-400 font-mono focus:border-purple-500">
-                    </div>
-                </div>
-                <div class="sm:col-span-1 flex justify-end pt-1 sm:pt-0">
-                    <button type="button" onclick="this.closest('div.bg-slate-950\\/90').remove()" class="w-full sm:w-auto px-3 py-2 rounded-xl bg-rose-950/40 hover:bg-rose-900/60 border border-rose-800/60 text-rose-400 font-bold text-xs flex items-center justify-center space-x-1">
-                        <i class="fa-solid fa-trash-can"></i>
-                        <span class="sm:hidden text-[10px]">Hapus Staff</span>
-                    </button>
-                </div>
-            `;
-            container.appendChild(div);
-        }
-
-        function addVehicleRow(type="Mobil", plate="", model="", sticker="") {
-            const container = document.getElementById('vehicle-rows-container');
-            const div = document.createElement('div');
-            div.className = "bg-slate-950/90 p-3.5 rounded-2xl border border-slate-800 space-y-2.5 sm:space-y-0 sm:grid sm:grid-cols-12 sm:gap-2 sm:items-center relative shadow-sm";
-            div.innerHTML = `
-                <div class="sm:col-span-3">
-                    <label class="block text-[10px] text-slate-400 font-bold mb-1">Jenis Kendaraan</label>
-                    <select class="veh-type w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:border-pink-500">
-                        <option value="Mobil" ${type==='Mobil'?'selected':''}>Mobil</option>
-                        <option value="Motor" ${type==='Motor'?'selected':''}>Motor</option>
-                        <option value="Sepeda Listrik" ${type==='Sepeda Listrik'?'selected':''}>Sepeda Listrik</option>
-                    </select>
-                </div>
-                <div class="sm:col-span-3">
-                    <label class="block text-[10px] text-pink-400 font-bold mb-1">Nomor Plat STNK</label>
-                    <input type="text" placeholder="B 1234 RVS" value="${plate}" class="veh-plate w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-pink-400 font-mono font-bold uppercase focus:border-pink-500">
-                </div>
-                <div class="grid grid-cols-2 gap-2 sm:contents">
-                    <div class="sm:col-span-3">
-                        <label class="block text-[10px] text-slate-400 font-bold mb-1">Merk / Model</label>
-                        <input type="text" placeholder="Honda HR-V / Vespa" value="${model}" class="veh-model w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-200 focus:border-pink-500">
-                    </div>
-                    <div class="sm:col-span-2">
-                        <label class="block text-[10px] text-slate-400 font-bold mb-1">Stiker / Card Parkir</label>
-                        <input type="text" placeholder="PK-XXX" value="${sticker}" class="veh-sticker w-full bg-slate-900 border border-slate-800 rounded-xl p-2.5 text-slate-300 font-mono focus:border-pink-500">
-                    </div>
-                </div>
-                <div class="sm:col-span-1 flex justify-end pt-1 sm:pt-0">
-                    <button type="button" onclick="this.closest('div.bg-slate-950\\/90').remove()" class="w-full sm:w-auto px-3 py-2 rounded-xl bg-rose-950/40 hover:bg-rose-900/60 border border-rose-800/60 text-rose-400 font-bold text-xs flex items-center justify-center space-x-1">
-                        <i class="fa-solid fa-trash-can"></i>
-                        <span class="sm:hidden text-[10px]">Hapus Kendaraan</span>
-                    </button>
-                </div>
-            `;
-            container.appendChild(div);
-        }
-
-        function handleFormSubmit(e) {
-            e.preventDefault();
-            const unitId = document.getElementById('form-unit-id').value;
-            
-            const familyMembers = [];
-            document.querySelectorAll('#family-rows-container > div').forEach(row => {
-                const name = row.querySelector('.fam-name').value.trim();
-                if (name) {
-                    familyMembers.push({
-                        relation: row.querySelector('.fam-rel').value.trim() || 'Keluarga',
-                        name: name,
-                        phone: row.querySelector('.fam-phone').value.trim(),
-                        cardId: row.querySelector('.fam-card').value.trim()
-                    });
-                }
-            });
-
-            const staffMembers = [];
-            document.querySelectorAll('#staff-rows-container > div').forEach(row => {
-                const name = row.querySelector('.staff-name').value.trim();
-                if (name) {
-                    staffMembers.push({
-                        role: row.querySelector('.staff-role').value.trim() || 'Staff',
-                        name: name,
-                        phone: row.querySelector('.staff-phone').value.trim(),
-                        cardId: row.querySelector('.staff-card').value.trim()
-                    });
-                }
-            });
-
-            const vehicles = [];
-            document.querySelectorAll('#vehicle-rows-container > div').forEach(row => {
-                const plate = row.querySelector('.veh-plate').value.trim();
-                if (plate) {
-                    vehicles.push({
-                        type: row.querySelector('.veh-type').value,
-                        plate: plate,
-                        model: row.querySelector('.veh-model').value.trim(),
-                        stickerId: row.querySelector('.veh-sticker').value.trim()
-                    });
-                }
-            });
-
-            const now = new Date();
-            const timeStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-
-            if (unitId) {
-                const item = apartmentData.find(u => u.id === unitId);
-                if (item) {
-                    item.tower = document.getElementById('form-tower').value;
-                    item.unitNumber = document.getElementById('form-unit-number').value.trim();
-                    item.occupancyStatus = document.getElementById('form-occupancy-status').value;
-                    item.owner = { name: document.getElementById('form-owner-name').value.trim(), phone: document.getElementById('form-owner-phone').value.trim() };
-                    item.primaryResident = {
-                        name: document.getElementById('form-resident-name').value.trim(),
-                        phone: document.getElementById('form-resident-phone').value.trim(),
-                        cardId: document.getElementById('form-resident-card').value.trim()
-                    };
-                    item.familyMembers = familyMembers;
-                    item.staffMembers = staffMembers;
-                    item.vehicles = vehicles;
-                    item.lastUpdated = timeStr;
-
-                    logActivity("UPDATE", `Update profil penghuni unit ${item.tower} - ${item.unitNumber}`);
-                    showToast('Data penghuni berhasil diperbarui!');
-                }
-            } else {
-                const newUnit = {
-                    id: "U-" + Date.now(),
-                    tower: document.getElementById('form-tower').value,
-                    unitNumber: document.getElementById('form-unit-number').value.trim(),
-                    unitType: "2BR Standard",
-                    size: 45.0,
-                    npp: 0.012,
-                    power: "2200 VA",
-                    occupancyStatus: document.getElementById('form-occupancy-status').value,
-                    owner: { name: document.getElementById('form-owner-name').value.trim(), phone: document.getElementById('form-owner-phone').value.trim() },
-                    primaryResident: {
-                        name: document.getElementById('form-resident-name').value.trim(),
-                        phone: document.getElementById('form-resident-phone').value.trim(),
-                        cardId: document.getElementById('form-resident-card').value.trim()
-                    },
-                    familyMembers: familyMembers,
-                    staffMembers: staffMembers,
-                    vehicles: vehicles,
-                    lastUpdated: timeStr
-                };
-                apartmentData.push(newUnit);
-                logActivity("CREATE", `Registrasi unit & penghuni baru ${newUnit.tower} - ${newUnit.unitNumber}`);
-                showToast('Unit baru berhasil ditambahkan!');
-            }
-
-            closeFormModal();
-            renderData();
-        }
-
-        // Dedicated Edit Master Unit
-        function openMasterUnitEditModal(unitId) {
-            const item = apartmentData.find(u => u.id === unitId);
-            if (!item) return;
-
-            document.getElementById('mu-unit-id').value = item.id;
-            document.getElementById('mu-tower').value = item.tower;
-            document.getElementById('mu-unit-number').value = item.unitNumber;
-            document.getElementById('mu-unit-type').value = item.unitType || '2BR Standard';
-            document.getElementById('mu-unit-size').value = item.size || '';
-            document.getElementById('mu-npp').value = item.npp || '';
-            document.getElementById('mu-power').value = item.power || '2200 VA';
-            
-            document.getElementById('mu-owner-name').value = item.owner ? item.owner.name || '' : '';
-            document.getElementById('mu-owner-nik').value = item.owner ? item.owner.nik || '' : '';
-            document.getElementById('mu-owner-phone').value = item.owner ? item.owner.phone || '' : '';
-            document.getElementById('mu-owner-email').value = item.owner ? item.owner.email || '' : '';
-
-            document.getElementById('mu-occupancy-status').value = item.occupancyStatus;
-
-            document.getElementById('master-unit-modal').classList.remove('hidden');
-        }
-
-        function closeMasterUnitEditModal() {
-            document.getElementById('master-unit-modal').classList.add('hidden');
-        }
-
-        function handleMasterUnitSubmit(e) {
-            e.preventDefault();
-            const unitId = document.getElementById('mu-unit-id').value;
-            const item = apartmentData.find(u => u.id === unitId);
-            if (!item) return;
-
-            item.tower = document.getElementById('mu-tower').value;
-            item.unitNumber = document.getElementById('mu-unit-number').value.trim();
-            item.unitType = document.getElementById('mu-unit-type').value;
-            item.size = parseFloat(document.getElementById('mu-unit-size').value) || 0;
-            item.npp = parseFloat(document.getElementById('mu-npp').value) || 0;
-            item.power = document.getElementById('mu-power').value;
-            item.occupancyStatus = document.getElementById('mu-occupancy-status').value;
-
-            item.owner = {
-                name: document.getElementById('mu-owner-name').value.trim(),
-                nik: document.getElementById('mu-owner-nik').value.trim(),
-                phone: document.getElementById('mu-owner-phone').value.trim(),
-                email: document.getElementById('mu-owner-email').value.trim()
+            let pIndex = appData.penghuni.findIndex(p => p.unitId === unitId);
+            const pObj = {
+                unitId: unitId,
+                penghuniUtama: namaUtama,
+                noHpPenghuni: document.getElementById('formHpPenghuni').value,
+                accessCardPenghuni: document.getElementById('formCardPenghuni').value,
+                keluarga: keluarga,
+                staff: staff,
+                kendaraan: kendaraan
             };
 
-            const now = new Date();
-            item.lastUpdated = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            if (pIndex > -1) appData.penghuni[pIndex] = pObj;
+            else appData.penghuni.push(pObj);
 
-            logActivity("UPDATE_MASTER", `Update spesifikasi fisik master unit ${item.tower} - ${item.unitNumber}`);
-            showToast('Spesifikasi Master Unit diperbarui!');
-            closeMasterUnitEditModal();
-            renderData();
+            addLog('Admin TR', `Update data penghuni unit ${unitId} (${namaUtama})`);
+            closeModal('modalPenghuni');
+            renderApp();
+            alert("Data penghuni berhasil disimpan!");
         }
 
-        // Mutasi Modal Functions
-        function openMutationModal(unitId) {
-            const item = apartmentData.find(u => u.id === unitId);
-            if (!item) return;
+        function editUnitSpec(unitId) {
+            const u = appData.masterUnits.find(x => x.id === unitId);
+            if (!u) return;
 
-            document.getElementById('mutation-from-id').value = item.id;
-            document.getElementById('mutation-from-display').value = `${item.tower} - Unit ${item.unitNumber} (${item.primaryResident?.name || 'Kosong'})`;
+            document.getElementById('muTower').value = u.tower;
+            document.getElementById('muUnitNo').value = u.id;
+            document.getElementById('muType').value = u.type;
+            document.getElementById('muLuas').value = u.luas;
+            document.getElementById('muNpp').value = u.npp;
+            document.getElementById('muListrik').value = u.listrik;
+            document.getElementById('muPemilik').value = u.pemilik;
+            document.getElementById('muStatus').value = u.status;
 
-            const selectTarget = document.getElementById('mutation-target-id');
-            selectTarget.innerHTML = '';
+            document.getElementById('modalMasterUnit').classList.remove('hidden');
+        }
 
-            const emptyUnits = apartmentData.filter(u => u.occupancyStatus === 'Kosong' && u.id !== item.id);
-            if (emptyUnits.length === 0) {
-                selectTarget.innerHTML = `<option value="">-- Tidak ada unit kosong --</option>`;
-            } else {
-                emptyUnits.forEach(u => {
-                    selectTarget.innerHTML += `<option value="${u.id}">${u.tower} - Unit ${u.unitNumber} (${u.unitType || 'Unit'})</option>`;
-                });
+        function saveMasterUnitSpec() {
+            const unitId = document.getElementById('muUnitNo').value.trim();
+            let u = appData.masterUnits.find(x => x.id === unitId);
+
+            if (!u) {
+                u = { id: unitId };
+                appData.masterUnits.push(u);
             }
 
-            document.getElementById('mutation-modal').classList.remove('hidden');
+            u.tower = document.getElementById('muTower').value;
+            u.type = document.getElementById('muType').value;
+            u.luas = parseFloat(document.getElementById('muLuas').value) || 36;
+            u.npp = parseFloat(document.getElementById('muNpp').value) || 0.0015;
+            u.listrik = document.getElementById('muListrik').value;
+            u.pemilik = document.getElementById('muPemilik').value;
+            u.status = document.getElementById('muStatus').value;
+
+            addLog('Admin TR', `Update spesifikasi master unit ${unitId}`);
+            closeModal('modalMasterUnit');
+            renderApp();
         }
 
-        function closeMutationModal() { document.getElementById('mutation-modal').classList.add('hidden'); }
+        function openMutasiModal(unitId) {
+            document.getElementById('mutasiOldUnit').value = unitId;
+            const select = document.getElementById('mutasiNewUnit');
+            const emptyUnits = appData.masterUnits.filter(u => u.status === 'Kosong');
 
-        function handleMutationSubmit(e) {
-            e.preventDefault();
-            const fromId = document.getElementById('mutation-from-id').value;
-            const targetId = document.getElementById('mutation-target-id').value;
-
-            if (!targetId) {
-                showToast('Pilih unit tujuan mutasi!', 'error');
+            if (emptyUnits.length === 0) {
+                alert("Tidak ada unit kosong yang tersedia untuk mutasi!");
                 return;
             }
 
-            const fromUnit = apartmentData.find(u => u.id === fromId);
-            const targetUnit = apartmentData.find(u => u.id === targetId);
+            select.innerHTML = emptyUnits.map(u => `<option value="${u.id}">${u.id} - ${u.tower}</option>`).join('');
+            document.getElementById('modalMutasi').classList.remove('hidden');
+        }
 
-            if (fromUnit && targetUnit) {
-                targetUnit.occupancyStatus = fromUnit.occupancyStatus;
-                targetUnit.primaryResident = { ...fromUnit.primaryResident };
-                targetUnit.familyMembers = [...fromUnit.familyMembers];
-                targetUnit.staffMembers = [...fromUnit.staffMembers];
-                targetUnit.vehicles = [...fromUnit.vehicles];
+        function processMutasi() {
+            const oldId = document.getElementById('mutasiOldUnit').value;
+            const newId = document.getElementById('mutasiNewUnit').value;
 
-                fromUnit.occupancyStatus = "Kosong";
-                fromUnit.primaryResident = { name: "", phone: "", cardId: "" };
-                fromUnit.familyMembers = [];
-                fromUnit.staffMembers = [];
-                fromUnit.vehicles = [];
+            let p = appData.penghuni.find(x => x.unitId === oldId);
+            if (p) p.unitId = newId;
 
-                logActivity("MUTASI", `Mutasi dari ${fromUnit.tower} - ${fromUnit.unitNumber} -> ${targetUnit.tower} - ${targetUnit.unitNumber}`);
-                showToast('Mutasi penghuni berhasil diproses!');
-                closeMutationModal();
-                renderData();
+            let oldU = appData.masterUnits.find(x => x.id === oldId);
+            if (oldU) oldU.status = 'Kosong';
+
+            let newU = appData.masterUnits.find(x => x.id === newId);
+            if (newU) newU.status = 'Terisi';
+
+            addLog('Admin TR', `Mutasi penghuni dari unit ${oldId} ke unit ${newId}`);
+            closeModal('modalMutasi');
+            renderApp();
+            alert(`Mutasi sukses! Penghuni berhasil dipindahkan ke unit ${newId}`);
+        }
+
+        function checkoutPenghuni(unitId) {
+            if (confirm(`Apakah Anda yakin ingin mengosongkan status huni (Check-out) unit ${unitId}?`)) {
+                const u = appData.masterUnits.find(x => x.id === unitId);
+                if (u) u.status = 'Kosong';
+                appData.penghuni = appData.penghuni.filter(x => x.unitId !== unitId);
+                addLog('Admin TR', `Check-out / Hapus penghuni unit ${unitId}`);
+                renderApp();
             }
         }
 
-        // Actions: Clear Resident & Delete Physical Unit
-        function clearResidentData(unitId) {
-            const item = apartmentData.find(u => u.id === unitId);
-            if (!item) return;
-
-            if (confirm(`Check-out / Kosongkan data penghuni dari unit ${item.tower} - ${item.unitNumber}?`)) {
-                item.occupancyStatus = "Kosong";
-                item.primaryResident = { name: "", phone: "", cardId: "" };
-                item.familyMembers = [];
-                item.staffMembers = [];
-                item.vehicles = [];
-
-                logActivity("CHECKOUT", `Penghuni check-out dari unit ${item.tower} - ${item.unitNumber}`);
-                showToast('Penghuni berhasil di-checkout');
-                renderData();
-            }
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
         }
 
-        function deleteMasterUnit(unitId) {
-            const item = apartmentData.find(u => u.id === unitId);
-            if (!item) return;
-
-            if (confirm(`Hapus permanen master fisik unit ${item.tower} - ${item.unitNumber}?`)) {
-                apartmentData = apartmentData.filter(u => u.id !== unitId);
-                logActivity("DELETE_MASTER", `Menghapus master unit ${item.tower} - ${item.unitNumber}`);
-                showToast('Master Unit dihapus');
-                renderData();
-            }
-        }
-
-        // Detail Modal View
-        function openDetailModal(unitId) {
-            const item = apartmentData.find(u => u.id === unitId);
-            if (!item) return;
-
-            const body = document.getElementById('detail-modal-body');
-            body.innerHTML = `
-                <div class="bg-slate-900/80 p-4 rounded-2xl border border-slate-800">
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h4 class="font-extrabold text-white text-base">${item.tower} - Unit ${item.unitNumber}</h4>
-                            <p class="text-slate-400 text-xs mt-0.5">${item.unitType || '-'} • Gross: ${item.size || 0} m² • NPP: ${item.npp || 0}% • ${item.power || '-'}</p>
-                        </div>
-                        <span class="px-3 py-1 rounded-full text-xs font-bold ${item.occupancyStatus === 'Kosong' ? 'bg-amber-950 text-amber-400 border border-amber-800' : 'bg-emerald-950 text-emerald-400 border border-emerald-800'}">${item.occupancyStatus}</span>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 gap-3">
-                    <div class="bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
-                        <span class="font-bold text-cyan-400 block mb-1 uppercase tracking-wider text-[10px]">Pemilik Legal</span>
-                        <div class="text-white font-bold">${item.owner?.name || '-'}</div>
-                        <div class="text-slate-400 text-[11px]">HP: ${item.owner?.phone || '-'}</div>
-                        <div class="text-slate-500 font-mono text-[10px]">NIK: ${item.owner?.nik || '-'}</div>
-                    </div>
-                    <div class="bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
-                        <span class="font-bold text-cyan-400 block mb-1 uppercase tracking-wider text-[10px]">Penghuni Utama</span>
-                        <div class="text-white font-bold">${item.primaryResident?.name || '-'}</div>
-                        <div class="text-slate-400 text-[11px]">HP: ${item.primaryResident?.phone || '-'}</div>
-                        <div class="text-cyan-400 font-mono text-[10px]">Card: ${item.primaryResident?.cardId || '-'}</div>
-                    </div>
-                </div>
-
-                <div class="bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
-                    <span class="font-bold text-slate-300 block mb-2 uppercase tracking-wider text-[10px]">Keluarga Inti (${item.familyMembers ? item.familyMembers.length : 0})</span>
-                    <ul class="space-y-1 font-medium">
-                        ${item.familyMembers && item.familyMembers.length > 0 ? item.familyMembers.map(f => `<li class="flex justify-between bg-slate-950/60 p-2 rounded-xl"><span>${f.name} <strong class="text-slate-400">(${f.relation})</strong></span> <span class="font-mono text-cyan-400 text-[10px]">${f.cardId || '-'}</span></li>`).join('') : '<li class="text-slate-500">Tidak ada anggota keluarga.</li>'}
-                    </ul>
-                </div>
-
-                <div class="bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
-                    <span class="font-bold text-slate-300 block mb-2 uppercase tracking-wider text-[10px]">Staff / ART / Driver (${item.staffMembers ? item.staffMembers.length : 0})</span>
-                    <ul class="space-y-1 font-medium">
-                        ${item.staffMembers && item.staffMembers.length > 0 ? item.staffMembers.map(s => `<li class="flex justify-between bg-slate-950/60 p-2 rounded-xl"><span>${s.name} <strong class="text-purple-400">(${s.role})</strong></span> <span class="font-mono text-purple-400 text-[10px]">${s.cardId || '-'}</span></li>`).join('') : '<li class="text-slate-500">Tidak ada staff terdaftar.</li>'}
-                    </ul>
-                </div>
-
-                <div class="bg-slate-900/50 p-4 rounded-2xl border border-slate-800">
-                    <span class="font-bold text-slate-300 block mb-2 uppercase tracking-wider text-[10px]">Kendaraan Terdaftar (${item.vehicles ? item.vehicles.length : 0})</span>
-                    <ul class="space-y-1 font-medium">
-                        ${item.vehicles && item.vehicles.length > 0 ? item.vehicles.map(v => `<li class="flex justify-between bg-slate-950/60 p-2 rounded-xl"><span>[${v.type}] <strong class="text-pink-400 font-mono">${v.plate}</strong> - ${v.model}</span> <span class="font-mono text-slate-400 text-[10px]">Stiker: ${v.stickerId || '-'}</span></li>`).join('') : '<li class="text-slate-500">Tidak ada kendaraan terdaftar.</li>'}
-                    </ul>
-                </div>
-            `;
-
-            document.getElementById('detail-modal').classList.remove('hidden');
-        }
-
-        function closeDetailModal() { document.getElementById('detail-modal').classList.add('hidden'); }
-
-        // Audit Trail Logs
-        function logActivity(type, desc) {
-            const now = new Date();
-            const timeStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
-            activityLogs.unshift({ id: Date.now(), timestamp: timeStr, type, desc });
-        }
-
-        function openLogModal() {
-            const list = document.getElementById('log-list');
-            list.innerHTML = '';
-            activityLogs.forEach(log => {
-                list.innerHTML += `
-                    <li class="bg-slate-950 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
-                        <div>
-                            <span class="text-slate-200">${log.desc}</span>
-                            <div class="text-[10px] text-slate-500 mt-0.5">${log.timestamp}</div>
-                        </div>
-                        <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-slate-900 border border-cyan-500/30 text-cyan-400">${log.type}</span>
-                    </li>
-                `;
+        function exportDataCSV() {
+            let csv = "Unit ID,Tower,Penghuni Utama,No HP,Access Card,Status Unit,Pemilik Legal\n";
+            appData.masterUnits.forEach(u => {
+                const p = appData.penghuni.find(x => x.unitId === u.id) || {};
+                csv += `"${u.id}","${u.tower}","${p.penghuniUtama || '-'}","${p.noHpPenghuni || '-'}","${p.accessCardPenghuni || '-'}","${u.status}","${u.pemilik}"\n`;
             });
-            document.getElementById('log-modal').classList.remove('hidden');
-        }
-
-        function closeLogModal() { document.getElementById('log-modal').classList.add('hidden'); }
-        function clearLogs() { activityLogs = []; openLogModal(); }
-
-        // CSV Export
-        function exportCSV() {
-            let csv = "Tower,Unit,Status,Pemilik,Penghuni Utama,Access Card,Jml Keluarga,Jml Staff,Jml Kendaraan\n";
-            apartmentData.forEach(item => {
-                csv += `"${item.tower}","${item.unitNumber}","${item.occupancyStatus}","${item.owner?.name || ''}","${item.primaryResident?.name || ''}","${item.primaryResident?.cardId || ''}",${item.familyMembers?.length || 0},${item.staffMembers?.length || 0},${item.vehicles?.length || 0}\n`;
-            });
-
             const blob = new Blob([csv], { type: 'text/csv' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.setAttribute('href', url);
-            a.setAttribute('download', 'Riverside_Executive_Database.csv');
+            a.setAttribute('download', `Database_Riverside_${new Date().toISOString().slice(0,10)}.csv`);
             a.click();
         }
 
-        function showToast(msg) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-message').innerText = msg;
-            toast.classList.remove('hidden');
-            setTimeout(() => { toast.classList.add('hidden'); }, 3000);
+        async function loadDataFromGAS() {
+            if (!GAS_API_URL || GAS_API_URL.includes("URL_WEB_APP_GAS_LO")) return;
+            try {
+                const res = await fetch(`${GAS_API_URL}?action=getAll`);
+                const data = await res.json();
+                if (data.masterUnits) appData.masterUnits = data.masterUnits;
+                if (data.penghuni) appData.penghuni = data.penghuni;
+                if (data.logs) appData.logs = data.logs;
+                renderApp();
+            } catch (e) {
+                console.error("Gagal konek GAS API:", e);
+            }
         }
+
+        window.onload = function() {
+            renderApp();
+            loadDataFromGAS();
+        };
     </script>
 </body>
 </html>
